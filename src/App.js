@@ -1,10 +1,10 @@
 import React from 'react';
-import Router from './components/RouteRecipes';
+import RouteRecipes from './components/RouteRecipes';
 
 function App() {
   return (
     <div>
-      <Router />
+      <RouteRecipes />
     </div>
   );
 }
