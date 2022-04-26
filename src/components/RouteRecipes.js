@@ -3,12 +3,13 @@ import Drinks from './Drinks';
 import Explore from './Explore';
 import ExploreDrinks from './ExploreDrinks';
 import ExploreFoods from './ExploreFoods';
+import Login from '../pages/Login';
 
 function RouteRecipes() {
   return (
     <Switch>
-      {/*       <Route exact path="/" component={ Login } />
-      <Route path="/foods" component={ Foods } /> */}
+      <Route exact path="/" component={ Login } />
+      {/* <Route path="/foods" component={ Foods } /> */}
       <Route exact path="/drinks" component={ Drinks } />
       {/* <Route path="/foods/:id" component={ DetailsFoods } /> */}
       {/* <Route path="/drinks/:id" component={ DetailsDrinks } /> */}
