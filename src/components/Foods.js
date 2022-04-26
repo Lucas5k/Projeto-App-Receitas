@@ -15,6 +15,7 @@ function Foods() {
     >
     Search
     </button>
+    <img src="" alt="" />
   </header>
 }
 
