@@ -13,7 +13,7 @@ function Login() {
     const enableButton = () => {
       const emailFormat = /[a-zA-Z0-9._]+@[a-zA-Z]+\.[a-zA-Z.]*\w$/;
       const isEmailValid = emailFormat.test(email);
-      const minPasswordCaracters = 6;
+      const minPasswordCaracters = 7;
       const isPasswordValid = password.length >= minPasswordCaracters;
       setIsButtonDisabled(!(isEmailValid && isPasswordValid));
     };
