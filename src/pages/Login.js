@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import saveEmail from '../helpers/saveEmail';
 
 function Login() {
-  const [login, setLogin] = useState({ email: '', password: '' });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const handleLogin = ({ target }) => {
-    const { name, value } = target;
-    setLogin({ ...login, [name]: value });
-  };
+  console.log(email);
 
   useEffect(() => {
     const enableButton = () => {
-      const { email, password } = login;
       const emailFormat = /[a-zA-Z0-9._]+@[a-zA-Z]+\.[a-zA-Z.]*\w$/;
       const isEmailValid = emailFormat.test(email);
       const minPasswordCaracters = 6;
@@ -19,7 +17,12 @@ function Login() {
       setIsButtonDisabled(!(isEmailValid && isPasswordValid));
     };
     enableButton();
-  }, [login]);
+  }, [email, password]);
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    saveEmail(email);
+  };
 
   return (
     <form>
@@ -30,8 +33,8 @@ function Login() {
           data-testid="email-input"
           id="email-input"
           name="email"
-          value={ login.email }
-          onChange={ handleLogin }
+          value={ email }
+          onChange={ ({ target }) => setEmail(target.value) }
         />
       </label>
       <label htmlFor="password-input">
@@ -41,14 +44,15 @@ function Login() {
           data-testid="password-input"
           id="password-input"
           name="password"
-          value={ login.password }
-          onChange={ handleLogin }
+          value={ password }
+          onChange={ ({ target }) => setPassword(target.value) }
         />
       </label>
       <button
         type="submit"
         data-testid="login-submit-btn"
         disabled={ isButtonDisabled }
+        onClick={ handleClick }
       >
         Enter
       </button>
