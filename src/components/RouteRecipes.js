@@ -1,4 +1,15 @@
 import React, { Route, Switch } from 'react-router-dom';
+import Foods from '../pages/Foods';
+import Drinks from '../pages/Drinks';
+import Explore from '../pages/Explore';
+import ExploreFoods from '../pages/ExploreFoods';
+import ExploreDrinks from '../pages/ExploreDrinks';
+import FoodsIngredients from '../pages/FoodsIngredients';
+import DrinksIngredients from '../pages/DrinksIngredients';
+import FoodsNationalitie from '../pages/FoodsNationalitie';
+import Profile from '../pages/Profile';
+import DoneRecipes from '../pages/DoneRecipes';
+import FavoritesRecipes from '../pages/FavoriteRecipes';
 
 function RouteRecipes() {
   return (
