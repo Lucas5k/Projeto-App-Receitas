@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import saveEmail from '../helpers/saveEmail';
+import { createMealsToken, createCocktailsToken } from '../helpers/createTokens';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -22,6 +23,8 @@ function Login() {
   const handleClick = (event) => {
     event.preventDefault();
     saveEmail(email);
+    createMealsToken();
+    createCocktailsToken();
     setIsLoginSucessful(true);
   };
 
