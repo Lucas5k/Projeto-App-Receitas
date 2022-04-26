@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import saveEmail from '../helpers/saveEmail';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-
-  console.log(email);
+  const [isLoginSucessful, setIsLoginSucessful] = useState(false);
 
   useEffect(() => {
     const enableButton = () => {
@@ -22,6 +22,7 @@ function Login() {
   const handleClick = (event) => {
     event.preventDefault();
     saveEmail(email);
+    setIsLoginSucessful(true);
   };
 
   return (
@@ -56,6 +57,7 @@ function Login() {
       >
         Enter
       </button>
+      { isLoginSucessful && <Redirect to="/foods" /> }
     </form>
   );
 }
