@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from '../components/Header';
+import NewHeader from '../components/NewHeader';
 import Footer from '../components/Footer';
 
 function ExploreFoods() {
   return (
     <main>
-      <Header />
+      <NewHeader name="Explore Foods" />
       <Footer />
     </main>
   );

@@ -4,10 +4,10 @@ import Footer from '../components/Footer';
 
 function Foods() {
   return (
-    <main>
-      <Header />
+    <section>
+      <Header name="Foods" />
       <Footer />
-    </main>
+    </section>
   );
 }
 

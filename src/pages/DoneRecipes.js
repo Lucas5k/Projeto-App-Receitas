@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from '../components/Header';
+import NewHeader from '../components/NewHeader';
 
 function DoneRecipes() {
   return (
     <main>
-      <Header />
+      <NewHeader name="Done Recipes" />
     </main>
   );
 }
