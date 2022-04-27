@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 
@@ -6,12 +7,14 @@ function Header() {
   return (
     <header>
       <h1 data-testid="page-title">Recipes Cook</h1>
-      <button
-        type="button"
-        data-testid="profile-top-btn"
-      >
-        Profile
-      </button>
+      <Redirect to="/profile">
+        <button
+          type="button"
+          data-testid="profile-top-btn"
+        >
+          Profile
+        </button>
+      </Redirect>
       <img src={ profileIcon } alt="Profile Icon" />
       <button
         type="button"
