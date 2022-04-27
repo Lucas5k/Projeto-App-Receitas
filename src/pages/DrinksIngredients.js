@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from '../components/Header';
+import NewHeader from '../components/NewHeader';
 
 function DrinksIngredients() {
   return (
     <main>
-      <Header />
+      <NewHeader name="Explore Ingredients" />
     </main>
   );
 }
