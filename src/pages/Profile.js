@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import NewHeader from '../components/NewHeader';
 
 function Profile() {
+  const [getUser, setGetUser] = useState('');
+
   const getEmailFromLocalStorage = () => {
     const getStorage = JSON.parse(localStorage.getItem('user'));
-    const spanEmail = document.querySelector('#email-span');
-    spanEmail.innerHTML = getStorage.email;
+    setGetUser(getStorage.email);
   };
 
   const clearLocalStorage = () => {
@@ -21,7 +22,7 @@ function Profile() {
   return (
     <main>
       <NewHeader name="Profile" />
-      <span data-testid="profile-email" id="email-span" />
+      <span data-testid="profile-email" id="email-span">{getUser}</span>
       <Link to="/done-recipes">
         <botton data-testid="profile-done-btn">Done Recipes</botton>
       </Link>
