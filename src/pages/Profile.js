@@ -24,18 +24,29 @@ function Profile() {
       <NewHeader name="Profile" />
       <span data-testid="profile-email" id="email-span">{getUser}</span>
       <Link to="/done-recipes">
-        <botton data-testid="profile-done-btn">Done Recipes</botton>
+        <button
+          type="button"
+          data-testid="profile-done-btn"
+        >
+          Done Recipes
+        </button>
       </Link>
       <Link to="/favorite-recipes">
-        <botton data-testid="profile-favorite-btn">Favorite Recipes</botton>
+        <button
+          type="button"
+          data-testid="profile-favorite-btn"
+        >
+          Favorite Recipes
+        </button>
       </Link>
       <Link to="/">
-        <botton
+        <button
+          type="button"
           data-testid="profile-logout-btn"
           onClick={ clearLocalStorage }
         >
           Logout
-        </botton>
+        </button>
       </Link>
       <Footer />
     </main>
