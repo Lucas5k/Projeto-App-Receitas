@@ -10,25 +10,22 @@ function Footer() {
       <Link to="/drinks">
         <button
           type="button"
-          data-testid="drinks-bottom-btn"
         >
-          <img src={ Drinks } alt="icone-bebida" />
+          <img src={ Drinks } alt="icone-bebida" data-testid="drinks-bottom-btn" />
         </button>
       </Link>
       <Link to="/explore">
         <button
           type="button"
-          data-testid="explore-bottom-btn"
         >
-          <img src={ Explore } alt="icone-bebida" />
+          <img src={ Explore } alt="icone-bebida" data-testid="explore-bottom-btn" />
         </button>
       </Link>
       <Link to="/foods">
         <button
           type="button"
-          data-testid="food-bottom-btn"
         >
-          <img src={ Food } alt="icone-food" />
+          <img src={ Food } alt="icone-food" data-testid="food-bottom-btn" />
         </button>
       </Link>
     </footer>
