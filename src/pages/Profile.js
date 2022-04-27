@@ -4,17 +4,16 @@ import Footer from '../components/Footer';
 import NewHeader from '../components/NewHeader';
 
 function Profile() {
-  const [getUser, setGetUser] = useState('');
+  const [userEmail, setUserEmail] = useState('');
   const clearLocalStorage = () => {
     localStorage.clear();
   };
 
   useEffect(() => {
     const getEmailFromLocalStorage = () => {
-      const getStorage = JSON.parse(localStorage.getItem('user'));
-      console.log(getStorage);
-      const validation = getStorage && getStorage.email;
-      setGetUser(validation);
+      const userData = JSON.parse(localStorage.getItem('user'));
+      const email = userData && userData.email;
+      setUserEmail(email);
     };
     getEmailFromLocalStorage();
   }, []);
@@ -22,7 +21,7 @@ function Profile() {
   return (
     <main>
       <NewHeader name="Profile" />
-      <h1 data-testid="profile-email">{getUser}</h1>
+      <h1 data-testid="profile-email">{userEmail}</h1>
       <Link to="/done-recipes">
         <button
           type="button"
