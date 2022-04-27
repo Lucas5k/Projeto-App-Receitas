@@ -9,11 +9,14 @@ function Header({ name }) {
   const [disabledInput, setDisabledInput] = useState(true);
 
   const togleInput = () => {
-    const TWO = 2;
-    setCount(count + 1);
-    console.log(count);
-    if (count === 1) setDisabledInput(false);
-    if (count === TWO) setDisabledInput(true);
+    if (count === 1) {
+      setDisabledInput(false);
+      setCount(2);
+    }
+    if (count === 2) {
+      setDisabledInput(true);
+      setCount(1);
+    }
   };
 
   return (
