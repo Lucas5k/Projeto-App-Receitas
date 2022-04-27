@@ -6,8 +6,8 @@ import Food from '../images/mealIcon.svg';
 
 function Footer() {
   return (
-    <footer data-testid="footer">
-      <Link to="/explore/drinks">
+    <footer data-testid="footer" style={ { position: 'fixed', bottom: '0' } }>
+      <Link to="/drinks">
         <button
           type="button"
           data-testid="drinks-bottom-btn"
@@ -23,7 +23,7 @@ function Footer() {
           <img src={ Explore } alt="icone-bebida" />
         </button>
       </Link>
-      <Link to="/explore/foods">
+      <Link to="/foods">
         <button
           type="button"
           data-testid="food-bottom-btn"
