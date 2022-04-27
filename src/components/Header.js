@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import contextGlobal from '../context';
 
 function Header({ name }) {
+  const { requisitionRecipesByIngredient,
+    requisitionRecipesByName,
+    requisitionRecipesByFirstLetter } = useContext(contextGlobal);
   const [count, setCount] = useState(1);
   const [disabledInput, setDisabledInput] = useState(true);
+  const [typeSearch, setTypeSearch] = useState('');
+  const [search, setSearch] = useState('');
 
   const toogleInput = () => {
     if (count === 1) {
@@ -17,6 +23,12 @@ function Header({ name }) {
       setDisabledInput(true);
       setCount(1);
     }
+  };
+
+  const searchRecipes = () => {
+    if (typeSearch === 'Ingredient') return requisitionRecipesByIngredient(search);
+    if (typeSearch === 'Name') return requisitionRecipesByName(search);
+    if (typeSearch === 'First letter') return requisitionRecipesByFirstLetter(search);
   };
 
   return (
@@ -39,6 +51,10 @@ function Header({ name }) {
             type="text"
             data-testid="search-input"
             id="search"
+            name="search"
+            value={ search }
+            onChange={ ({ target }) => setSearch(target.value) }
+
           />)
           : null
       }
@@ -52,33 +68,42 @@ function Header({ name }) {
           data-testid="search-top-btn"
         />
       </button>
-      <label htmlFor="ingredient">
-        <input
-          type="radio"
-          id="ingredient"
-          data-testid="ingredient-search-radio"
-        />
-        Ingredients
-      </label>
-      <label htmlFor="name-recipe">
-        <input
-          type="radio"
-          id="name-recipe"
-          data-testid="name-search-radio"
-        />
-        Name
-      </label>
-      <label htmlFor="first-letter">
-        <input
-          type="radio"
-          id="first-letter"
-          data-testid="first-letter-search-radio"
-        />
-        First Letter
-      </label>
+      <div onChange={ ({ target }) => setTypeSearch(target.value) }>
+        <label htmlFor="ingredient">
+          <input
+            type="radio"
+            id="ingredient"
+            data-testid="ingredient-search-radio"
+            name="type-search"
+            value="Ingredient"
+          />
+          Ingredients
+        </label>
+        <label htmlFor="name-recipe">
+          <input
+            type="radio"
+            id="name-recipe"
+            data-testid="name-search-radio"
+            name="type-search"
+            value="Name"
+          />
+          Name
+        </label>
+        <label htmlFor="first-letter">
+          <input
+            type="radio"
+            id="first-letter"
+            data-testid="first-letter-search-radio"
+            name="type-search"
+            value="First letter"
+          />
+          First letter
+        </label>
+      </div>
       <button
         type="button"
         data-testid="exec-search-btn"
+        onClick={ searchRecipes }
       >
         Search
       </button>
