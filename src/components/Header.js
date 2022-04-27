@@ -52,6 +52,36 @@ function Header({ name }) {
           data-testid="search-top-btn"
         />
       </button>
+      <label htmlFor="ingredient">
+        <input
+          type="radio"
+          id="ingredient"
+          data-testid="ingredient-search-radio"
+        />
+        Ingredients
+      </label>
+      <label htmlFor="name-recipe">
+        <input
+          type="radio"
+          id="name-recipe"
+          data-testid="name-search-radio"
+        />
+        Name
+      </label>
+      <label htmlFor="first-letter">
+        <input
+          type="radio"
+          id="first-letter"
+          data-testid="first-letter-search-radio"
+        />
+        First Letter
+      </label>
+      <button
+        type="button"
+        data-testid="exec-search-btn"
+      >
+        Search
+      </button>
     </header>
   );
 }
