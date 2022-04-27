@@ -8,7 +8,7 @@ function Header({ name }) {
   const [count, setCount] = useState(1);
   const [disabledInput, setDisabledInput] = useState(true);
 
-  const togleInput = () => {
+  const toogleInput = () => {
     if (count === 1) {
       setDisabledInput(false);
       setCount(2);
@@ -44,7 +44,7 @@ function Header({ name }) {
       }
       <button
         type="button"
-        onClick={ togleInput }
+        onClick={ toogleInput }
       >
         <img
           src={ searchIcon }
