@@ -1,34 +1,43 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import contextGlobal from '../context';
 
+const filterFirstLetter = 'First letter';
+const filterName = 'Name';
+const filterIngredient = 'Ingredient';
 function Header({ name }) {
-  const { requisitionRecipesByIngredient,
-    requisitionRecipesByName,
-    requisitionRecipesByFirstLetter } = useContext(contextGlobal);
-  const [count, setCount] = useState(1);
-  const [disabledInput, setDisabledInput] = useState(true);
+  const { requisitionFoodsByIngredient,
+    requisitionFoodsByName,
+    requisitionFoodsByFirstLetter,
+    requisitionDrinksByIngredient, requisitionDrinksByName,
+    requisitionDrinksByFirstLetter,
+    toogleInput,
+    disabledInput,
+  } = useContext(contextGlobal);
   const [typeSearch, setTypeSearch] = useState('');
   const [search, setSearch] = useState('');
 
-  const toogleInput = () => {
-    if (count === 1) {
-      setDisabledInput(false);
-      setCount(2);
-    }
-    if (count === 2) {
-      setDisabledInput(true);
-      setCount(1);
-    }
+  const auxiliaryFunctionFoods = () => {
+    if (typeSearch === filterIngredient) return requisitionFoodsByIngredient(search);
+    if (typeSearch === filterName) return requisitionFoodsByName(search);
+    if (typeSearch === filterFirstLetter) return requisitionFoodsByFirstLetter(search);
   };
 
+  const auxiliaryFunctionDrinks = () => {
+    if (typeSearch === filterIngredient) return requisitionDrinksByIngredient(search);
+    if (typeSearch === filterName) return requisitionDrinksByName(search);
+    if (typeSearch === filterFirstLetter) return requisitionDrinksByFirstLetter(search);
+  };
+
+  const { pathname } = useLocation();
   const searchRecipes = () => {
-    if (typeSearch === 'Ingredient') return requisitionRecipesByIngredient(search);
-    if (typeSearch === 'Name') return requisitionRecipesByName(search);
-    if (typeSearch === 'First letter') return requisitionRecipesByFirstLetter(search);
+    const functionFoods = auxiliaryFunctionFoods();
+    const functionDrinks = auxiliaryFunctionDrinks();
+    const conditional = pathname === '/foods' ? functionFoods : functionDrinks;
+    return conditional;
   };
 
   return (
