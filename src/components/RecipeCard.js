@@ -18,6 +18,7 @@ function RecipeCard({ recipe, index }) {
           ? recipe.strDrink : recipe.strMeal }
 
       </span>
+      <p>ola</p>
     </section>
   );
 }
