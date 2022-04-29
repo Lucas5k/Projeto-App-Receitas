@@ -7,10 +7,9 @@ const filterName = 'Name';
 const filterIngredient = 'Ingredient';
 
 function Provider({ children }) {
-  const [results, setResults] = useState([]);
+  const [recipes, setRecipes] = useState([]);
   const [count, setCount] = useState(1);
   const [disabledInput, setDisabledInput] = useState(true);
-  const [oneFoodReturn, setOneFoodReturn] = useState([]);
 
   const toogleInput = () => {
     if (count === 1) {
@@ -26,23 +25,25 @@ function Provider({ children }) {
   const requisitionFoodsByIngredient = async (search) => {
     const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${search}`);
     const dataJson = await response.json();
-    setResults(dataJson.meals);
+    setRecipes(dataJson.meals);
   };
 
   const requisitionFoodsByName = async (search) => {
     const returnSearch = search;
     const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${returnSearch}`);
     const dataJson = await response.json();
-    const resultsFoodsName = dataJson.meals;
-    if (resultsFoodsName.length === 1) return setOneFoodReturn(resultsFoodsName);
-    setResults(dataJson.meals);
+    const foods = dataJson && dataJson.meals;
+    if (!foods) {
+      return global.alert('Sorry, we haven\'t found any recipes for these filters.');
+    }
+    setRecipes(foods);
   };
 
   const requisitionFoodsByFirstLetter = async (search) => {
     const firstLetter = search.slice(0, 1);
     const URL = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${firstLetter}`);
     const dataJson = await URL.json();
-    setResults(dataJson.meals);
+    setRecipes(dataJson.meals);
     if (search.length > 1) {
       return global.alert('Your search must have only 1 (one) character');
     }
@@ -51,22 +52,24 @@ function Provider({ children }) {
   const requisitionDrinksByIngredient = async (search) => {
     const responseDrinks = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${search}`);
     const dataJsonDrinks = await responseDrinks.json();
-    setResults(dataJsonDrinks.drinks);
+    setRecipes(dataJsonDrinks.drinks);
   };
 
   const requisitionDrinksByName = async (search) => {
     const responseDrinks = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}`);
     const dataJsonDrinks = await responseDrinks.json();
-    const resultsDrinksName = dataJsonDrinks.drinks;
-    if (results.length > 1) return setOneFoodReturn(resultsDrinksName);
-    setResults(dataJsonDrinks.drinks);
+    const drinks = dataJsonDrinks && dataJsonDrinks.drinks;
+    if (!drinks) {
+      return global.alert('Sorry, we haven\'t found any recipes for these filters.');
+    }
+    setRecipes(drinks);
   };
 
   const requisitionDrinksByFirstLetter = async (search) => {
     const firstLetter = search.slice(0, 1);
     const URL = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${firstLetter}`);
     const dataJson = await URL.json();
-    setResults(dataJson.drinks);
+    setRecipes(dataJson.drinks);
     if (search.length > 1) {
       return global.alert('Your search must have only 1 (one) character');
     }
@@ -87,16 +90,15 @@ function Provider({ children }) {
   const contextValue = {
     requisitionFoodsByIngredient,
     requisitionFoodsByName,
-    results,
     requisitionFoodsByFirstLetter,
     requisitionDrinksByIngredient,
     requisitionDrinksByName,
     requisitionDrinksByFirstLetter,
     toogleInput,
     disabledInput,
-    oneFoodReturn,
     auxiliaryFunctionFoods,
     auxiliaryFunctionDrinks,
+    recipes,
   };
 
   return (

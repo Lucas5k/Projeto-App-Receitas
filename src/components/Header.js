@@ -1,12 +1,13 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link, Redirect, useRouteMatch } from 'react-router-dom';
+import { Link, Redirect, useLocation } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import contextGlobal from '../context';
+import RecipeCard from './RecipeCard';
 
 function Header({ name }) {
-  const { toogleInput, oneFoodReturn,
+  const { toogleInput, recipes,
     disabledInput,
     auxiliaryFunctionFoods,
     auxiliaryFunctionDrinks,
@@ -14,13 +15,10 @@ function Header({ name }) {
   const [typeSearch, setTypeSearch] = useState('');
   const [search, setSearch] = useState('');
 
-  const { url } = useRouteMatch();
-  const searchRecipes = () => {
-    const functionFoods = auxiliaryFunctionFoods(typeSearch, search);
-    const functionDrinks = auxiliaryFunctionDrinks(typeSearch, search);
-    const conditional = url === '/foods' ? functionFoods : functionDrinks;
-    return conditional;
-  };
+  const { pathname } = useLocation();
+  const searchRecipes = () => (pathname === '/foods'
+    ? auxiliaryFunctionFoods(typeSearch, search)
+    : auxiliaryFunctionDrinks(typeSearch, search));
 
   return (
     <header>
@@ -99,17 +97,26 @@ function Header({ name }) {
         Search
       </button>
       {
-        oneFoodReturn.map((element, index) => {
+        recipes.length === 1 && recipes.map((element, index) => {
           const { idMeal, idDrink } = element;
-          const conditionalURL = url === '/foods'
+          const conditionalPathName = pathname === '/foods'
             ? idMeal : idDrink;
-          console.log(conditionalURL);
           return (
             <Redirect
               key={ index }
-              to={ `${url}/${conditionalURL}` }
+              to={ `${pathname}/${conditionalPathName}` }
             />
           );
+        })
+      }
+      {
+        recipes.length > 1 && recipes.map((recipe, index) => {
+          const maxRecipes = 12;
+          return index < maxRecipes && (
+            <RecipeCard
+              index={ index }
+              recipe={ recipe }
+            />);
         })
       }
     </header>
