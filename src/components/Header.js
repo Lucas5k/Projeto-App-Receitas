@@ -1,42 +1,24 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, Redirect, useRouteMatch } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import contextGlobal from '../context';
 
-const filterFirstLetter = 'First letter';
-const filterName = 'Name';
-const filterIngredient = 'Ingredient';
 function Header({ name }) {
-  const { requisitionFoodsByIngredient,
-    requisitionFoodsByName,
-    requisitionFoodsByFirstLetter,
-    requisitionDrinksByIngredient, requisitionDrinksByName,
-    requisitionDrinksByFirstLetter,
-    toogleInput,
+  const { toogleInput, oneFoodReturn,
     disabledInput,
+    auxiliaryFunctionFoods,
+    auxiliaryFunctionDrinks,
   } = useContext(contextGlobal);
   const [typeSearch, setTypeSearch] = useState('');
   const [search, setSearch] = useState('');
 
-  const auxiliaryFunctionFoods = () => {
-    if (typeSearch === filterIngredient) return requisitionFoodsByIngredient(search);
-    if (typeSearch === filterName) return requisitionFoodsByName(search);
-    if (typeSearch === filterFirstLetter) return requisitionFoodsByFirstLetter(search);
-  };
-
-  const auxiliaryFunctionDrinks = () => {
-    if (typeSearch === filterIngredient) return requisitionDrinksByIngredient(search);
-    if (typeSearch === filterName) return requisitionDrinksByName(search);
-    if (typeSearch === filterFirstLetter) return requisitionDrinksByFirstLetter(search);
-  };
-
-  const { pathname } = useLocation();
+  const { url } = useRouteMatch();
   const searchRecipes = () => {
-    const functionFoods = auxiliaryFunctionFoods();
-    const functionDrinks = auxiliaryFunctionDrinks();
-    const conditional = pathname === '/foods' ? functionFoods : functionDrinks;
+    const functionFoods = auxiliaryFunctionFoods(typeSearch, search);
+    const functionDrinks = auxiliaryFunctionDrinks(typeSearch, search);
+    const conditional = url === '/foods' ? functionFoods : functionDrinks;
     return conditional;
   };
 
@@ -116,6 +98,20 @@ function Header({ name }) {
       >
         Search
       </button>
+      {
+        oneFoodReturn.map((element, index) => {
+          const { idMeal, idDrink } = element;
+          const conditionalURL = url === '/foods'
+            ? idMeal : idDrink;
+          console.log(conditionalURL);
+          return (
+            <Redirect
+              key={ index }
+              to={ `${url}/${conditionalURL}` }
+            />
+          );
+        })
+      }
     </header>
   );
 }
