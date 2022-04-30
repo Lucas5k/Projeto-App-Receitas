@@ -4,14 +4,13 @@ import { useLocation } from 'react-router-dom';
 
 function RecipeCard({ recipe, index }) {
   const { pathname } = useLocation();
-  console.log(pathname);
-  console.log(recipe);
+
   return (
     <section data-testid={ `${index}-recipe-card` }>
       <img
         data-testid={ `${index}-card-img` }
         src={ pathname === '/foods' ? recipe.strMealThumb : recipe.strDrinkThumb }
-        alt="test"
+        alt="recipe"
       />
       <span data-testid={ `${index}-card-name` }>
         { pathname === '/drinks'

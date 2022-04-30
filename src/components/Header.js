@@ -1,13 +1,12 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link, Redirect, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import contextGlobal from '../context';
-import RecipeCard from './RecipeCard';
 
 function Header({ name }) {
-  const { toogleInput, recipes,
+  const { toogleInput,
     disabledInput,
     auxiliaryFunctionFoods,
     auxiliaryFunctionDrinks,
@@ -96,29 +95,6 @@ function Header({ name }) {
       >
         Search
       </button>
-      {
-        recipes.length === 1 && recipes.map((element, index) => {
-          const { idMeal, idDrink } = element;
-          const conditionalPathName = pathname === '/foods'
-            ? idMeal : idDrink;
-          return (
-            <Redirect
-              key={ index }
-              to={ `${pathname}/${conditionalPathName}` }
-            />
-          );
-        })
-      }
-      {
-        recipes.length > 1 && recipes.map((recipe, index) => {
-          const maxRecipes = 12;
-          return index < maxRecipes && (
-            <RecipeCard
-              index={ index }
-              recipe={ recipe }
-            />);
-        })
-      }
     </header>
   );
 }
