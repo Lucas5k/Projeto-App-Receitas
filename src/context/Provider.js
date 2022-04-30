@@ -7,7 +7,8 @@ const filterName = 'Name';
 const filterIngredient = 'Ingredient';
 
 function Provider({ children }) {
-  const [recipes, setRecipes] = useState([]);
+  const [foodsRecipes, setFoodsRecipes] = useState([]);
+  const [drinksRecipes, setDrinksRecipes] = useState([]);
   const [count, setCount] = useState(1);
   const [disabledInput, setDisabledInput] = useState(true);
 
@@ -25,7 +26,7 @@ function Provider({ children }) {
   const requisitionFoodsByIngredient = async (search) => {
     const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${search}`);
     const dataJson = await response.json();
-    setRecipes(dataJson.meals);
+    setFoodsRecipes(dataJson.meals);
   };
 
   const requisitionFoodsByName = async (search) => {
@@ -36,14 +37,14 @@ function Provider({ children }) {
     if (!foods) {
       return global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
-    setRecipes(foods);
+    setFoodsRecipes(foods);
   };
 
   const requisitionFoodsByFirstLetter = async (search) => {
     const firstLetter = search.slice(0, 1);
     const URL = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${firstLetter}`);
     const dataJson = await URL.json();
-    setRecipes(dataJson.meals);
+    setFoodsRecipes(dataJson.meals);
     if (search.length > 1) {
       return global.alert('Your search must have only 1 (one) character');
     }
@@ -52,7 +53,7 @@ function Provider({ children }) {
   const requisitionDrinksByIngredient = async (search) => {
     const responseDrinks = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${search}`);
     const dataJsonDrinks = await responseDrinks.json();
-    setRecipes(dataJsonDrinks.drinks);
+    setDrinksRecipes(dataJsonDrinks.drinks);
   };
 
   const requisitionDrinksByName = async (search) => {
@@ -62,14 +63,14 @@ function Provider({ children }) {
     if (!drinks) {
       return global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
-    setRecipes(drinks);
+    setDrinksRecipes(drinks);
   };
 
   const requisitionDrinksByFirstLetter = async (search) => {
     const firstLetter = search.slice(0, 1);
     const URL = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${firstLetter}`);
     const dataJson = await URL.json();
-    setRecipes(dataJson.drinks);
+    setDrinksRecipes(dataJson.drinks);
     if (search.length > 1) {
       return global.alert('Your search must have only 1 (one) character');
     }
@@ -98,7 +99,8 @@ function Provider({ children }) {
     disabledInput,
     auxiliaryFunctionFoods,
     auxiliaryFunctionDrinks,
-    recipes,
+    foodsRecipes,
+    drinksRecipes,
   };
 
   return (
