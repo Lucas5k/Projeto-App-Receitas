@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import contextGlobal from '.';
 
@@ -8,6 +9,8 @@ const filterIngredient = 'Ingredient';
 
 function Provider({ children }) {
   const [foodsRecipes, setFoodsRecipes] = useState([]);
+  const [resultsFoods, setResultsFoods] = useState([]);
+  const [oneRecipes, setOneRecipes] = useState([]);
   const [drinksRecipes, setDrinksRecipes] = useState([]);
   const [count, setCount] = useState(1);
   const [disabledInput, setDisabledInput] = useState(true);
@@ -23,6 +26,25 @@ function Provider({ children }) {
     }
   };
 
+  const { pathname } = useLocation();
+  const getFoods = async () => {
+    const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+    const dataJson = await response.json();
+    const foods = dataJson && dataJson.meals;
+    setResultsFoods(foods);
+  };
+
+  const getDrinks = async () => {
+    const responseDrinks = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+    const data = await responseDrinks.json();
+    const drinks = data && data.drinks;
+    setResultsFoods(drinks);
+  };
+
+  useEffect(() => (pathname === '/foods'
+    ? getFoods()
+    : getDrinks()), [pathname]);
+
   const requisitionFoodsByIngredient = async (search) => {
     const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${search}`);
     const dataJson = await response.json();
@@ -37,7 +59,8 @@ function Provider({ children }) {
     if (!foods) {
       return global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
-    setFoodsRecipes(foods);
+    if (foods.length === 1) return setOneRecipes(foods);
+    if (foods.length > 1) return setFoodsRecipes(foods);
   };
 
   const requisitionFoodsByFirstLetter = async (search) => {
@@ -63,7 +86,8 @@ function Provider({ children }) {
     if (!drinks) {
       return global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
-    setDrinksRecipes(drinks);
+    if (drinks.length === 1) return setOneRecipes(drinks);
+    if (drinks.length > 1) return setDrinksRecipes(drinks);
   };
 
   const requisitionDrinksByFirstLetter = async (search) => {
@@ -101,6 +125,8 @@ function Provider({ children }) {
     auxiliaryFunctionDrinks,
     foodsRecipes,
     drinksRecipes,
+    resultsFoods,
+    oneRecipes,
   };
 
   return (

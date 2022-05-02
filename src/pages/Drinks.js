@@ -6,13 +6,13 @@ import RecipeCard from '../components/RecipeCard';
 import contextGlobal from '../context';
 
 function Drinks() {
-  const { drinksRecipes } = useContext(contextGlobal);
-
+  const { drinksRecipes, oneRecipes, resultsFoods } = useContext(contextGlobal);
+  const checkingValues = drinksRecipes.length <= 0 ? resultsFoods : drinksRecipes;
   return (
     <section>
       <Header name="Drinks" />
       {
-        drinksRecipes.length === 1 && drinksRecipes.map((element, index) => {
+        oneRecipes && oneRecipes.map((element, index) => {
           const { idDrink } = element;
           return (
             <Redirect
@@ -23,10 +23,11 @@ function Drinks() {
         })
       }
       {
-        drinksRecipes.length > 1 && drinksRecipes.map((recipe, index) => {
+        checkingValues && checkingValues.map((recipe, index) => {
           const maxRecipes = 12;
           return index < maxRecipes && (
             <RecipeCard
+              data-testid={ `${index}-recipe-card` }
               index={ index }
               recipe={ recipe }
             />);
