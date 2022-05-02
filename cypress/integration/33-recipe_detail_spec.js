@@ -8,7 +8,7 @@ afterEach(() => {
   });
 });
 
-describe.only('33 - Implemente os elementos da tela de detalhes de uma receita respeitando os atributos descritos no protótipo', () => {
+describe('33 - Implemente os elementos da tela de detalhes de uma receita respeitando os atributos descritos no protótipo', () => {
   it('A tela de comida possui todos os atributos data-testid', () => {
     cy.visit('http://localhost:3000/foods/52771', {
       onBeforeLoad(win) {
@@ -47,7 +47,7 @@ describe.only('33 - Implemente os elementos da tela de detalhes de uma receita r
   });
 });
 
-describe.only('34 - Realize uma request para a API passando o `id` da receita que deve estar disponível nos parâmetros da URL', () => {
+describe('34 - Realize uma request para a API passando o `id` da receita que deve estar disponível nos parâmetros da URL', () => {
   it('Verifica se a requisição para a API de comidas foi realizada', () => {
     cy.visit('http://localhost:3000/foods/52771', {
       onBeforeLoad(win) {
@@ -73,7 +73,7 @@ describe.only('34 - Realize uma request para a API passando o `id` da receita qu
   });
 });
 
-describe('35 - Desenvolva a tela de forma que contenha uma imagem da receita, o título, a categoria (ou se é ou não alcoólico), uma lista de ingredientes seguidos pelas quantidades, instruções, um vídeo do youtube "embedado" e recomendações', () => {
+describe.only('35 - Desenvolva a tela de forma que contenha uma imagem da receita, o título, a categoria (ou se é ou não alcoólico), uma lista de ingredientes seguidos pelas quantidades, instruções, um vídeo do youtube "embedado" e recomendações', () => {
   it('Verifica se os elementos descritos no protótipo existem na tela de detalhes de comida', () => {
     cy.visit('http://localhost:3000/foods/52771', {
       onBeforeLoad(win) {

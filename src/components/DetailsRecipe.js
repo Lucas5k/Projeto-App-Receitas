@@ -1,13 +1,21 @@
+import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 function DetailsRecipe({ pageDetails }) {
   const [recipe, setRecipe] = useState({});
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
   const [recomendations, setRecomendations] = useState(['teste']);
+  const [conditionalsVariables, setConditionalsVariables] = useState({
+    recipeTitle: '',
+    recipeImgSource: '',
+    recipeAlcoholic: '',
+    showVideo: false,
+
+  });
   const { pathname } = useLocation();
+  const foodsIsTrue = pageDetails === 'foods';
 
   useEffect(() => {
     const getIngredientsAndMeasures = (object) => {
@@ -27,12 +35,12 @@ function DetailsRecipe({ pageDetails }) {
     };
     const requestReceipeById = async () => {
       const id = pathname.split('/')[2];
-      const url = pageDetails === 'foods'
+      const url = foodsIsTrue
         ? `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
         : `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
       const response = await fetch(url);
       const dataJson = await response.json();
-      const recipeData = dataJson && pageDetails === 'foods'
+      const recipeData = dataJson && foodsIsTrue
         ? dataJson.meals
         : dataJson.drinks;
       setRecipe(...recipeData);
@@ -41,10 +49,41 @@ function DetailsRecipe({ pageDetails }) {
     requestReceipeById();
   }, []);
 
+  useEffect(() => {
+    const statements = () => {
+      if (pageDetails === 'foods') {
+        setConditionalsVariables({
+          recipeTitle: recipe.strMeal,
+          recipeImgSource: recipe.strMealThumb,
+          recipeAlcoholic: null,
+          showVideo: true,
+        });
+      }
+      if (pageDetails === 'drinks') {
+        setConditionalsVariables({
+          recipeTitle: recipe.strDrink,
+          recipeImgSource: recipe.strDrinkThumb,
+          recipeAlcoholic: recipe.strAlcoholic,
+          showVideo: false,
+        });
+      }
+    };
+    statements();
+  }, [recipe]);
+
   return (
     <div>
-      <h1 data-testid="recipe-title">Título</h1>
-      <img src="" alt="recipe" data-testid="recipe-photo" />
+      <h1
+        data-testid="recipe-title"
+      >
+        { conditionalsVariables.recipeTitle }
+
+      </h1>
+      <img
+        src={ conditionalsVariables.recipeImgSource }
+        alt="recipe"
+        data-testid="recipe-photo"
+      />
       <button type="button" data-testid="share-btn">Share</button>
       <button
         type="button"
@@ -52,7 +91,11 @@ function DetailsRecipe({ pageDetails }) {
       >
         Favorite
       </button>
-      <span data-testid="recipe-category">Categorie</span>
+      <span data-testid="recipe-category">
+        { recipe.strCategory }
+        {''}
+        { recipe.strAlcoholic && ` (${recipe.strAlcoholic})`}
+      </span>
       <ol>
         {
           ingredients.map((ingredient, index) => (
@@ -64,23 +107,30 @@ function DetailsRecipe({ pageDetails }) {
           ))
         }
       </ol>
-      <p data-testid="instructions">Instruções</p>
-      { pageDetails === 'foods' && (
-        <video data-testid="video" width="320" height="240" controls="controls">
-          <source src="teste.mp4" type="teste.mp4" />
-          <track kind="captions" />
-        </video>)}
+      <p data-testid="instructions">{ recipe.strInstructions }</p>
+      { conditionalsVariables.showVideo && (
+        <iframe
+          width="560"
+          height="315"
+          src={ recipe.strYoutube }
+          data-testid="video"
+          title="YouTube video player"
+          frameBorder="0"
+          allow={ `accelerometer;
+          autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture` }
+          allowFullScreen
+        >
+          Não foi possivel renderizar o video
+        </iframe>)}
       <ol>
-        {
-          recomendations.map((recomendation, index) => (
-            <li
-              key={ index }
-              data-testid={ `${index}-recomendation-card` }
-            >
-              {recomendation}
-            </li>
-          ))
-        }
+        {recomendations.map((recomendation, index) => (
+          <li
+            key={ index }
+            data-testid={ `${index}-recomendation-card` }
+          >
+            {recomendation}
+          </li>
+        ))}
       </ol>
       <button type="button" data-testid="start-recipe-btn">Iniciar</button>
     </div>
