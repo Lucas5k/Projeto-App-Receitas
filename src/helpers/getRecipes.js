@@ -7,7 +7,7 @@ export const getDoneRecipes = (id) => {
 
 export const getContinueRecipe = (id, pageDetails) => {
   const progressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
-  const foodsIsTrue = pageDetails === 'food';
+  const foodsIsTrue = pageDetails === 'foods';
   if (progressRecipes) {
     let idArray;
     if (foodsIsTrue) {
