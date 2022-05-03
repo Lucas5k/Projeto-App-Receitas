@@ -12,7 +12,6 @@ function Carousel({ recomendations, pageDetails }) {
     slidesToShow: 2,
     slidesToScroll: 2,
   };
-  console.log(recomendations, pageDetails);
   return (
     <Slider { ...settings }>
       {

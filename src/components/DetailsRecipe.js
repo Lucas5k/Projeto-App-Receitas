@@ -1,16 +1,17 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { requestRecipe, requestRecomendation } from '../helpers/requestAPIs';
+import { getDoneRecipes, getContinueRecipe } from '../helpers/getRecipes';
+import getIngredientsAndMeasures from '../helpers/getIngredientsAndMeasures';
 import Carousel from './Carousel';
 
 function DetailsRecipe({ pageDetails }) {
   const { pathname } = useLocation();
   const id = pathname.split('/')[2];
-  const foodsIsTrue = pageDetails === 'foods';
 
   const [recipe, setRecipe] = useState({});
-  const [ingredients, setIngredients] = useState([]);
-  const [measures, setMeasures] = useState([]);
+  const [ingredientsAndMeasures, setIngredientsAndMeasures] = useState([]);
   const [recomendations, setRecomendations] = useState([]);
   const [conditionalsVariables, setConditionalsVariables] = useState({
     recipeTitle: '',
@@ -19,63 +20,26 @@ function DetailsRecipe({ pageDetails }) {
     showVideo: false,
   });
   const [isDoneRecipe, setIsDoneRecipe] = useState(false);
+  const [inProgressRecipe, setInProgressRecipe] = useState(false);
 
   useEffect(() => {
-    const getDoneRecipes = () => {
-      const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
-      if (doneRecipes) {
-        setIsDoneRecipe(doneRecipes.some((doneRecipe) => doneRecipe.id === id));
-      }
-    };
-    getDoneRecipes();
-  }, []);
-
-  useEffect(() => {
-    const getIngredientsAndMeasures = (object) => {
-      const maxIngredients = 21;
-      const objectIngredients = [];
-      const objectMeasures = [];
-      for (let i = 1; i < maxIngredients; i += 1) {
-        const ingredient = `strIngredient${i}`;
-        const measure = `strMeasure${i}`;
-        if (object[ingredient]) {
-          objectIngredients.push(object[ingredient]);
-          objectMeasures.push(object[measure]);
-        }
-      }
-      setIngredients(objectIngredients);
-      setMeasures(objectMeasures);
-    };
-
-    const requestReceipeById = async () => {
-      const url = foodsIsTrue
-        ? `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
-        : `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
-      const response = await fetch(url);
-      const dataJson = await response.json();
-      const recipeData = dataJson && foodsIsTrue
-        ? dataJson.meals
-        : dataJson.drinks;
+    const getRecipe = async () => {
+      const recipeData = await requestRecipe(pageDetails, id);
       setRecipe(...recipeData);
       getIngredientsAndMeasures(recipeData[0]);
+      const recipeRecomendation = await requestRecomendation(pageDetails);
+      setRecomendations(recipeRecomendation);
     };
-    requestReceipeById();
-    const requestRecomendations = async () => {
-      const url = foodsIsTrue
-        ? 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
-        : 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
-      const response = await fetch(url);
-      const dataJson = await response.json();
-      const recipeData = dataJson && !foodsIsTrue
-        ? dataJson.meals
-        : dataJson.drinks;
-      console.log(dataJson);
-      setRecomendations(recipeData);
-    };
-    requestRecomendations();
+    getRecipe();
   }, []);
 
   useEffect(() => {
+    setIsDoneRecipe(getDoneRecipes(id));
+    setInProgressRecipe(getContinueRecipe(id, pageDetails));
+  }, []);
+
+  useEffect(() => {
+    setIngredientsAndMeasures(getIngredientsAndMeasures(recipe));
     const statements = () => {
       if (pageDetails === 'foods') {
         setConditionalsVariables({
@@ -124,11 +88,11 @@ function DetailsRecipe({ pageDetails }) {
       </span>
       <ol>
         {
-          ingredients.map((ingredient, index) => (
+          ingredientsAndMeasures.map((ingredientObject, index) => (
             <li key={ index } data-testid={ `${index}-ingredient-name-and-measure` }>
-              { ingredient }
+              { ingredientObject.ingredient }
               {' '}
-              { measures[index] }
+              { ingredientObject.measures }
             </li>
           ))
         }
@@ -156,7 +120,7 @@ function DetailsRecipe({ pageDetails }) {
             data-testid="start-recipe-btn"
             style={ { position: 'fixed', bottom: '0' } }
           >
-            Start Recipe
+            { inProgressRecipe ? 'Continue Recipe' : 'Start Recipe' }
           </button>
         )
       }
