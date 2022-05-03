@@ -25,9 +25,16 @@ function ButtonCategory({ category }) {
         value={ strCategory }
         data-testid={ `${strCategory}-category-filter` }
       >
-        { strCategory }
+        {strCategory}
       </button>
     </section>
+    /*       <button
+            type="button"
+            onClick={ handleClick }
+            data-testid="All-category-filter"
+          >
+            All
+          </button> */
   );
 }
 
