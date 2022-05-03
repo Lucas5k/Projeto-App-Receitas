@@ -3,19 +3,19 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 function DetailsRecipe({ pageDetails }) {
+  const { pathname } = useLocation();
+  const foodsIsTrue = pageDetails === 'foods';
+
   const [recipe, setRecipe] = useState({});
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
-  const [recomendations, setRecomendations] = useState(['teste']);
+  const [recomendations, setRecomendations] = useState([]);
   const [conditionalsVariables, setConditionalsVariables] = useState({
     recipeTitle: '',
     recipeImgSource: '',
     recipeAlcoholic: '',
     showVideo: false,
-
   });
-  const { pathname } = useLocation();
-  const foodsIsTrue = pageDetails === 'foods';
 
   useEffect(() => {
     const getIngredientsAndMeasures = (object) => {
@@ -33,6 +33,7 @@ function DetailsRecipe({ pageDetails }) {
       setIngredients(objectIngredients);
       setMeasures(objectMeasures);
     };
+
     const requestReceipeById = async () => {
       const id = pathname.split('/')[2];
       const url = foodsIsTrue
@@ -47,6 +48,19 @@ function DetailsRecipe({ pageDetails }) {
       getIngredientsAndMeasures(recipeData[0]);
     };
     requestReceipeById();
+    const requestRecomendations = async () => {
+      const url = foodsIsTrue
+        ? 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
+        : 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+      const response = await fetch(url);
+      const dataJson = await response.json();
+      const recipeData = dataJson && !foodsIsTrue
+        ? dataJson.meals
+        : dataJson.drinks;
+      console.log(dataJson);
+      setRecomendations(recipeData);
+    };
+    requestRecomendations();
   }, []);
 
   useEffect(() => {
@@ -128,7 +142,7 @@ function DetailsRecipe({ pageDetails }) {
             key={ index }
             data-testid={ `${index}-recomendation-card` }
           >
-            {recomendation}
+            {recomendation.strCategory}
           </li>
         ))}
       </ol>
