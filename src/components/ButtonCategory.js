@@ -25,9 +25,10 @@ function ButtonCategory({ category }) {
         value={ strCategory }
         data-testid={ `${strCategory}-category-filter` }
       >
-        { strCategory }
+        {strCategory}
       </button>
     </section>
+
   );
 }
 
