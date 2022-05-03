@@ -5,6 +5,7 @@ import Carousel from './Carousel';
 
 function DetailsRecipe({ pageDetails }) {
   const { pathname } = useLocation();
+  const id = pathname.split('/')[2];
   const foodsIsTrue = pageDetails === 'foods';
 
   const [recipe, setRecipe] = useState({});
@@ -17,6 +18,17 @@ function DetailsRecipe({ pageDetails }) {
     recipeAlcoholic: '',
     showVideo: false,
   });
+  const [isDoneRecipe, setIsDoneRecipe] = useState(false);
+
+  useEffect(() => {
+    const getDoneRecipes = () => {
+      const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+      if (doneRecipes) {
+        setIsDoneRecipe(doneRecipes.some((doneRecipe) => doneRecipe.id === id));
+      }
+    };
+    getDoneRecipes();
+  }, []);
 
   useEffect(() => {
     const getIngredientsAndMeasures = (object) => {
@@ -36,7 +48,6 @@ function DetailsRecipe({ pageDetails }) {
     };
 
     const requestReceipeById = async () => {
-      const id = pathname.split('/')[2];
       const url = foodsIsTrue
         ? `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
         : `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
@@ -138,7 +149,17 @@ function DetailsRecipe({ pageDetails }) {
           Não foi possivel renderizar o video
         </iframe>)}
       <Carousel recomendations={ recomendations } pageDetails={ pageDetails } />
-      <button type="button" data-testid="start-recipe-btn">Start Recipe</button>
+      {
+        !isDoneRecipe && (
+          <button
+            type="button"
+            data-testid="start-recipe-btn"
+            style={ { position: 'fixed', bottom: '0' } }
+          >
+            Start Recipe
+          </button>
+        )
+      }
     </div>
   );
 }
