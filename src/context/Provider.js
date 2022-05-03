@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import contextGlobal from '.';
 
 const filterFirstLetter = 'First letter';
 const filterName = 'Name';
 const filterIngredient = 'Ingredient';
-
 function Provider({ children }) {
   const [foodsRecipes, setFoodsRecipes] = useState([]);
   const [resultsFoods, setResultsFoods] = useState([]);
@@ -161,6 +161,23 @@ function Provider({ children }) {
     }
   };
 
+  const { pathname } = useLocation();
+  const handleAllFilter = async () => {
+    const urlAll = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+    const dataURLAll = await urlAll.json();
+    const foodsList = dataURLAll && dataURLAll.meals;
+
+    const urlAllDrinks = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+    const dataURLDrinks = await urlAllDrinks.json();
+    const drinksList = dataURLDrinks && dataURLDrinks.drinks;
+
+    if (pathname === '/foods') {
+      setResultsFilterFoods(foodsList);
+    } else {
+      setResultsFilterDrinks(drinksList);
+    }
+  };
+
   const contextValue = {
     requisitionFoodsByIngredient,
     requisitionFoodsByName,
@@ -184,6 +201,7 @@ function Provider({ children }) {
     resultsFilterFoods,
     resultsFilterDrinks,
     getFoods,
+    handleAllFilter,
   };
 
   return (

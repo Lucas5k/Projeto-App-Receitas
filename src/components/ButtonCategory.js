@@ -28,13 +28,7 @@ function ButtonCategory({ category }) {
         {strCategory}
       </button>
     </section>
-    /*       <button
-            type="button"
-            onClick={ handleClick }
-            data-testid="All-category-filter"
-          >
-            All
-          </button> */
+
   );
 }
 

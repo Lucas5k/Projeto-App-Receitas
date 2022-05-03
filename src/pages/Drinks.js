@@ -9,13 +9,21 @@ import ButtonCategory from '../components/ButtonCategory';
 function Drinks() {
   const { drinksRecipes,
     oneRecipes,
-    resultsDrinks, drinksCategory, resultsFilterDrinks } = useContext(contextGlobal);
+    resultsDrinks,
+    drinksCategory, resultsFilterDrinks, handleAllFilter } = useContext(contextGlobal);
   const checkingValues = drinksRecipes.length <= 0 ? resultsDrinks : drinksRecipes;
   const checkingfilter = resultsFilterDrinks.length <= 0
     ? checkingValues : resultsFilterDrinks;
   return (
     <section>
       <Header name="Drinks" />
+      <button
+        type="button"
+        onClick={ handleAllFilter }
+        data-testid="All-category-filter"
+      >
+        All
+      </button>
       {
         drinksCategory && drinksCategory.map((category, index) => {
           const maxCategory = 5;
