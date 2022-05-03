@@ -4,15 +4,29 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import RecipeCard from '../components/RecipeCard';
 import contextGlobal from '../context';
+import ButtonCategory from '../components/ButtonCategory';
 
 function Drinks() {
-  const { drinksRecipes } = useContext(contextGlobal);
-
+  const { drinksRecipes,
+    oneRecipes,
+    resultsDrinks, drinksCategory, resultsFilterDrinks } = useContext(contextGlobal);
+  const checkingValues = drinksRecipes.length <= 0 ? resultsDrinks : drinksRecipes;
+  const checkingfilter = resultsFilterDrinks.length <= 0
+    ? checkingValues : resultsFilterDrinks;
   return (
     <section>
       <Header name="Drinks" />
       {
-        drinksRecipes.length === 1 && drinksRecipes.map((element, index) => {
+        drinksCategory && drinksCategory.map((category, index) => {
+          const maxCategory = 5;
+          return index < maxCategory && (
+            <ButtonCategory
+              category={ category }
+            />);
+        })
+      }
+      {
+        oneRecipes && oneRecipes.map((element, index) => {
           const { idDrink } = element;
           return (
             <Redirect
@@ -23,10 +37,11 @@ function Drinks() {
         })
       }
       {
-        drinksRecipes.length > 1 && drinksRecipes.map((recipe, index) => {
+        checkingfilter && checkingfilter.map((recipe, index) => {
           const maxRecipes = 12;
           return index < maxRecipes && (
             <RecipeCard
+              data-testid={ `${index}-recipe-card` }
               index={ index }
               recipe={ recipe }
             />);

@@ -6,7 +6,7 @@ function RecipeCard({ recipe, index }) {
   const { pathname } = useLocation();
 
   return (
-    <section data-testid={ `${index}-recipe-card` }>
+    <section key={ index } data-testid={ `${index}-recipe-card` }>
       <img
         data-testid={ `${index}-card-img` }
         src={ pathname === '/foods' ? recipe.strMealThumb : recipe.strDrinkThumb }
@@ -15,14 +15,13 @@ function RecipeCard({ recipe, index }) {
       <span data-testid={ `${index}-card-name` }>
         { pathname === '/drinks'
           ? recipe.strDrink : recipe.strMeal }
-
       </span>
     </section>
   );
 }
 
 RecipeCard.propTypes = {
-  recipe: PropTypes.objectOf.isRequired,
+  recipe: PropTypes.objectOf(PropTypes.string).isRequired,
   index: PropTypes.number.isRequired,
 };
 

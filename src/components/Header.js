@@ -56,45 +56,51 @@ function Header({ name }) {
           data-testid="search-top-btn"
         />
       </button>
-      <div onChange={ ({ target }) => setTypeSearch(target.value) }>
-        <label htmlFor="ingredient">
-          <input
-            type="radio"
-            id="ingredient"
-            data-testid="ingredient-search-radio"
-            name="type-search"
-            value="Ingredient"
-          />
-          Ingredients
-        </label>
-        <label htmlFor="name-recipe">
-          <input
-            type="radio"
-            id="name-recipe"
-            data-testid="name-search-radio"
-            name="type-search"
-            value="Name"
-          />
-          Name
-        </label>
-        <label htmlFor="first-letter">
-          <input
-            type="radio"
-            id="first-letter"
-            data-testid="first-letter-search-radio"
-            name="type-search"
-            value="First letter"
-          />
-          First letter
-        </label>
-      </div>
-      <button
-        type="button"
-        data-testid="exec-search-btn"
-        onClick={ searchRecipes }
-      >
-        Search
-      </button>
+      {
+        !disabledInput ? (
+          <>
+            <div onChange={ ({ target }) => setTypeSearch(target.value) }>
+              <label htmlFor="ingredient">
+                <input
+                  type="radio"
+                  id="ingredient"
+                  data-testid="ingredient-search-radio"
+                  name="type-search"
+                  value="Ingredient"
+                />
+                Ingredients
+              </label>
+              <label htmlFor="name-recipe">
+                <input
+                  type="radio"
+                  id="name-recipe"
+                  data-testid="name-search-radio"
+                  name="type-search"
+                  value="Name"
+                />
+                Name
+              </label>
+              <label htmlFor="first-letter">
+                <input
+                  type="radio"
+                  id="first-letter"
+                  data-testid="first-letter-search-radio"
+                  name="type-search"
+                  value="First letter"
+                />
+                First letter
+              </label>
+            </div>
+            <button
+              type="button"
+              data-testid="exec-search-btn"
+              onClick={ searchRecipes }
+            >
+              Search
+            </button>
+          </>)
+          : null
+      }
     </header>
   );
 }
