@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import Carousel from './Carousel';
 
 function DetailsRecipe({ pageDetails }) {
   const { pathname } = useLocation();
@@ -136,17 +137,8 @@ function DetailsRecipe({ pageDetails }) {
         >
           Não foi possivel renderizar o video
         </iframe>)}
-      <ol>
-        {recomendations.map((recomendation, index) => (
-          <li
-            key={ index }
-            data-testid={ `${index}-recomendation-card` }
-          >
-            {recomendation.strCategory}
-          </li>
-        ))}
-      </ol>
-      <button type="button" data-testid="start-recipe-btn">Iniciar</button>
+      <Carousel recomendations={ recomendations } pageDetails={ pageDetails } />
+      <button type="button" data-testid="start-recipe-btn">Start Recipe</button>
     </div>
   );
 }
