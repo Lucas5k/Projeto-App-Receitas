@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Footer from '../components/Footer';
 import NewHeader from '../components/NewHeader';
 import contextGlobal from '../context';
 
 function ExploreFoods() {
   const { handleRandom, resultsRandomFoods } = useContext(contextGlobal);
-  const { idMeal } = resultsRandomFoods;
   return (
     <main>
       <NewHeader name="Explore Foods" />
@@ -23,20 +22,27 @@ function ExploreFoods() {
       >
         By Nationality
       </Link>
-      <Link
-        to={ `/foods/${idMeal}` }
+      <button
+        type="button"
         data-testid="explore-surprise"
         onClick={ handleRandom }
       >
         Surprise me!
-      </Link>
+      </button>
+
+      {
+        resultsRandomFoods && resultsRandomFoods.map((food, index) => {
+          const { idMeal } = food;
+          return (
+            <Redirect
+              key={ index }
+              to={ `/foods/${idMeal}` }
+            />
+          );
+        })
+      }
     </main>
   );
 }
 
 export default ExploreFoods;
-
-/*         resultsRandomFoods && resultsRandomFoods.map((food, index) => {
-          const { idMeal } = food;
-          return (
-            <div key={ index }> */
