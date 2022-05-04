@@ -9,9 +9,9 @@ export function saveFavorites(recipe, pageDetails) {
   const reducedReceipe = {
     id: isRecipeFood ? recipe.idMeal : recipe.idDrink,
     type: isRecipeFood ? 'food' : 'drink',
-    nationality: recipe.strArea,
+    nationality: isRecipeFood ? recipe.strArea : '',
     category: recipe.strCategory,
-    alcoholicOrNot: recipe.strAlcoholic,
+    alcoholicOrNot: isRecipeFood ? '' : recipe.strAlcoholic,
     name: isRecipeFood ? recipe.strMeal : recipe.strDrink,
     image: isRecipeFood ? recipe.strMealThumb : recipe.strDrinkThumb,
   };
