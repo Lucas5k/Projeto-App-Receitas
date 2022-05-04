@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import contextGlobal from '.';
 
 const filterFirstLetter = 'First letter';
 const filterName = 'Name';
 const filterIngredient = 'Ingredient';
-
 function Provider({ children }) {
   const [foodsRecipes, setFoodsRecipes] = useState([]);
+  const [resultsFoods, setResultsFoods] = useState([]);
+  const [resultsDrinks, setResultsDrinks] = useState([]);
+  const [oneRecipes, setOneRecipes] = useState([]);
   const [drinksRecipes, setDrinksRecipes] = useState([]);
+  const [foodsCategory, setFoodsCategory] = useState([]);
+  const [drinksCategory, setDrinksCategory] = useState([]);
   const [count, setCount] = useState(1);
   const [disabledInput, setDisabledInput] = useState(true);
+  const [resultsFilterFoods, setResultsFilterFoods] = useState([]);
+  const [resultsFilterDrinks, setResultsFilterDrinks] = useState([]);
 
   const toogleInput = () => {
     if (count === 1) {
@@ -22,6 +29,48 @@ function Provider({ children }) {
       setCount(1);
     }
   };
+
+  const getFoods = async () => {
+    const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+    const dataJson = await response.json();
+    const foods = dataJson && dataJson.meals;
+    setResultsFoods(foods);
+  };
+
+  useEffect(() => {
+    getFoods();
+  }, []);
+
+  const getDrinks = async () => {
+    const responseDrinks = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+    const data = await responseDrinks.json();
+    const drinks = data && data.drinks;
+    setResultsDrinks(drinks);
+  };
+
+  useEffect(() => {
+    getDrinks();
+  }, []);
+
+  useEffect(() => {
+    const getCategoryFoods = async () => {
+      const responseCategory = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
+      const dataCategory = await responseCategory.json();
+      const categoryFoods = dataCategory && dataCategory.meals;
+      setFoodsCategory(categoryFoods);
+    };
+    getCategoryFoods();
+  }, []);
+
+  useEffect(() => {
+    const getCategoryDrinks = async () => {
+      const responseCategoryDrinks = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
+      const dataCategory = await responseCategoryDrinks.json();
+      const categoryDrinks = dataCategory && dataCategory.drinks;
+      setDrinksCategory(categoryDrinks);
+    };
+    getCategoryDrinks();
+  }, []);
 
   const requisitionFoodsByIngredient = async (search) => {
     const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${search}`);
@@ -37,7 +86,8 @@ function Provider({ children }) {
     if (!foods) {
       return global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
-    setFoodsRecipes(foods);
+    if (foods.length === 1) return setOneRecipes(foods);
+    if (foods.length > 1) return setFoodsRecipes(foods);
   };
 
   const requisitionFoodsByFirstLetter = async (search) => {
@@ -63,7 +113,8 @@ function Provider({ children }) {
     if (!drinks) {
       return global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
-    setDrinksRecipes(drinks);
+    if (drinks.length === 1) return setOneRecipes(drinks);
+    if (drinks.length > 1) return setDrinksRecipes(drinks);
   };
 
   const requisitionDrinksByFirstLetter = async (search) => {
@@ -88,6 +139,45 @@ function Provider({ children }) {
     if (typeSearch === filterFirstLetter) return requisitionDrinksByFirstLetter(search);
   };
 
+  const foodFilter = async (callback, checking) => {
+    const url = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${callback}`);
+    const dataURL = await url.json();
+    const food = dataURL && dataURL.meals;
+    if (!checking) {
+      setResultsFilterFoods(food);
+    } else {
+      setResultsFilterFoods(resultsFoods);
+    }
+  };
+
+  const drinkFilter = async (callback, checking) => {
+    const url = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${callback}`);
+    const dataURL = await url.json();
+    const drink = dataURL && dataURL.drinks;
+    if (!checking) {
+      setResultsFilterDrinks(drink);
+    } else {
+      setResultsFilterDrinks(resultsDrinks);
+    }
+  };
+
+  const { pathname } = useLocation();
+  const handleAllFilter = async () => {
+    const urlAll = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+    const dataURLAll = await urlAll.json();
+    const foodsList = dataURLAll && dataURLAll.meals;
+
+    const urlAllDrinks = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+    const dataURLDrinks = await urlAllDrinks.json();
+    const drinksList = dataURLDrinks && dataURLDrinks.drinks;
+
+    if (pathname === '/foods') {
+      setResultsFilterFoods(foodsList);
+    } else {
+      setResultsFilterDrinks(drinksList);
+    }
+  };
+
   const contextValue = {
     requisitionFoodsByIngredient,
     requisitionFoodsByName,
@@ -101,6 +191,17 @@ function Provider({ children }) {
     auxiliaryFunctionDrinks,
     foodsRecipes,
     drinksRecipes,
+    resultsFoods,
+    oneRecipes,
+    foodsCategory,
+    resultsDrinks,
+    drinksCategory,
+    foodFilter,
+    drinkFilter,
+    resultsFilterFoods,
+    resultsFilterDrinks,
+    getFoods,
+    handleAllFilter,
   };
 
   return (
