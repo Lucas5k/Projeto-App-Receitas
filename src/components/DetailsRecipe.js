@@ -4,8 +4,9 @@ import { useLocation, useHistory } from 'react-router-dom';
 import { requestRecipe, requestRecomendation } from '../helpers/requestAPIs';
 import { getDoneRecipes, getContinueRecipe } from '../helpers/getRecipes';
 import getIngredientsAndMeasures from '../helpers/getIngredientsAndMeasures';
-import ShareIcon from '../images/shareIcon.svg';
+// import ShareIcon from '../images/shareIcon.svg';
 import Carousel from './Carousel';
+import FavoriteButton from './FavoriteButton';
 
 const copy = require('clipboard-copy');
 
@@ -91,12 +92,7 @@ function DetailsRecipe({ pageDetails }) {
         {/* <img src={ ShareIcon } alt="Share Icon" /> */}
         share
       </button>
-      <button
-        type="button"
-        data-testid="favorite-btn"
-      >
-        Favorite
-      </button>
+      <FavoriteButton id={ id } />
       <span data-testid="recipe-category">
         { recipe.strCategory }
         {''}
