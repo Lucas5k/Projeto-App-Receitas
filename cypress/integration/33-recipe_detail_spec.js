@@ -347,7 +347,7 @@ describe('41 - Redirecione a pessoa usuária caso o botão "Start Recipe" seja c
   });
 });
 
-describe('42 - Implemente um botão de compartilhar e um de favoritar a receita', () => {
+describe.skip('42 - Implemente um botão de compartilhar e um de favoritar a receita', () => {
   it('Verifica se os botões estão disponíveis na tela de detalhes de uma comida', () => {
     cy.visit('http://localhost:3000/foods/52771', {
       onBeforeLoad(win) {
