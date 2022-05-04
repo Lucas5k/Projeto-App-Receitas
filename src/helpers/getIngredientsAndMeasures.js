@@ -1,5 +1,4 @@
 const getIngredientsAndMeasures = (object) => {
-  console.log(object);
   const maxIngredients = 21;
   const ingredientsAndMeasures = [];
   for (let i = 1; i < maxIngredients; i += 1) {
@@ -10,7 +9,6 @@ const getIngredientsAndMeasures = (object) => {
         .push({ ingredient: object[ingredient], measures: object[measure] });
     }
   }
-  console.log(ingredientsAndMeasures);
   return ingredientsAndMeasures;
 };
 

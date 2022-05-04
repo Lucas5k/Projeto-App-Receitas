@@ -92,7 +92,7 @@ function DetailsRecipe({ pageDetails }) {
         {/* <img src={ ShareIcon } alt="Share Icon" /> */}
         share
       </button>
-      <FavoriteButton id={ id } />
+      <FavoriteButton id={ id } recipe={ recipe } pageDetails={ pageDetails } />
       <span data-testid="recipe-category">
         { recipe.strCategory }
         {''}
