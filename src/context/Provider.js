@@ -18,6 +18,8 @@ function Provider({ children }) {
   const [disabledInput, setDisabledInput] = useState(true);
   const [resultsFilterFoods, setResultsFilterFoods] = useState([]);
   const [resultsFilterDrinks, setResultsFilterDrinks] = useState([]);
+  const [resultsRandomFoods, setResultsRandomFoods] = useState([]);
+  const [resultsRandomDrinks, setResultsRandomDrinks] = useState([]);
 
   const toogleInput = () => {
     if (count === 1) {
@@ -178,6 +180,21 @@ function Provider({ children }) {
     }
   };
 
+  const handleRandom = async () => {
+    const urlRandomMeals = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
+    const dataURLMeals = await urlRandomMeals.json();
+    const mealsRandom = dataURLMeals && dataURLMeals.meals;
+    const urlRandomDrinks = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php');
+    const dataURLDrinks = await urlRandomDrinks.json();
+    const drinksRandom = dataURLDrinks && dataURLDrinks.drinks;
+
+    if (pathname === '/explore/foods') {
+      setResultsRandomFoods(mealsRandom);
+    } else {
+      setResultsRandomDrinks(drinksRandom);
+    }
+  };
+
   const contextValue = {
     requisitionFoodsByIngredient,
     requisitionFoodsByName,
@@ -202,6 +219,9 @@ function Provider({ children }) {
     resultsFilterDrinks,
     getFoods,
     handleAllFilter,
+    handleRandom,
+    resultsRandomFoods,
+    resultsRandomDrinks,
   };
 
   return (
