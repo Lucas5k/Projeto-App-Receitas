@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { requestRecipe, requestRecomendation } from '../helpers/requestAPIs';
 import { getDoneRecipes, getContinueRecipe } from '../helpers/getRecipes';
 import getIngredientsAndMeasures from '../helpers/getIngredientsAndMeasures';
@@ -9,6 +9,7 @@ import Carousel from './Carousel';
 function DetailsRecipe({ pageDetails }) {
   const { pathname } = useLocation();
   const id = pathname.split('/')[2];
+  const history = useHistory();
 
   const [recipe, setRecipe] = useState({});
   const [ingredientsAndMeasures, setIngredientsAndMeasures] = useState([]);
@@ -99,19 +100,21 @@ function DetailsRecipe({ pageDetails }) {
       </ol>
       <p data-testid="instructions">{ recipe.strInstructions }</p>
       { conditionalsVariables.showVideo && (
-        <iframe
-          width="560"
-          height="315"
-          src={ recipe.strYoutube }
-          data-testid="video"
-          title="YouTube video player"
-          frameBorder="0"
-          allow={ `accelerometer;
-          autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture` }
-          allowFullScreen
-        >
-          Não foi possivel renderizar o video
-        </iframe>)}
+        <div style={ { marginBottom: '20px' } }>
+          <iframe
+            width="560"
+            height="315"
+            src={ recipe.strYoutube }
+            data-testid="video"
+            title="YouTube video player"
+            frameBorder="0"
+            allow={ `accelerometer;
+            autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture` }
+            allowFullScreen
+          >
+            Não foi possivel renderizar o video
+          </iframe>
+        </div>)}
       <Carousel recomendations={ recomendations } pageDetails={ pageDetails } />
       {
         !isDoneRecipe && (
@@ -119,6 +122,7 @@ function DetailsRecipe({ pageDetails }) {
             type="button"
             data-testid="start-recipe-btn"
             style={ { position: 'fixed', bottom: '0' } }
+            onClick={ () => history.push(`${pathname}/in-progress`) }
           >
             { inProgressRecipe ? 'Continue Recipe' : 'Start Recipe' }
           </button>

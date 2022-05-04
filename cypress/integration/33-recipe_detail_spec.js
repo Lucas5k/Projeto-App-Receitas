@@ -289,7 +289,7 @@ describe('39 - Implemente a solução de forma que caso a receita já tenha sido
   });
 });
 
-describe.only('40 - Implemente a solução de modo que caso a receita tenha sido iniciada mas não finalizada, o texto do botão deve ser "Continue Recipe"', () => {
+describe('40 - Implemente a solução de modo que caso a receita tenha sido iniciada mas não finalizada, o texto do botão deve ser "Continue Recipe"', () => {
   it('Verifica botão de "Continue Recipe" na tela de detalhes de uma comida', () => {
     cy.visit('http://localhost:3000/foods/52771', {
       onBeforeLoad(win) {
@@ -323,7 +323,7 @@ describe.only('40 - Implemente a solução de modo que caso a receita tenha sido
   });
 });
 
-describe('41 - Redirecione a pessoa usuária caso o botão "Start Recipe" seja clicado, a rota deve mudar para a tela de receita em progresso', () => {
+describe.only('41 - Redirecione a pessoa usuária caso o botão "Start Recipe" seja clicado, a rota deve mudar para a tela de receita em progresso', () => {
   it('Redireciona para tela de receita da comida em progresso', () => {
     cy.visit('http://localhost:3000/foods/52771', {
       onBeforeLoad(win) {
@@ -347,7 +347,7 @@ describe('41 - Redirecione a pessoa usuária caso o botão "Start Recipe" seja c
   });
 });
 
-describe('42 - Implemente um botão de compartilhar e um de favoritar a receita', () => {
+describe.skip('42 - Implemente um botão de compartilhar e um de favoritar a receita', () => {
   it('Verifica se os botões estão disponíveis na tela de detalhes de uma comida', () => {
     cy.visit('http://localhost:3000/foods/52771', {
       onBeforeLoad(win) {
@@ -371,7 +371,7 @@ describe('42 - Implemente um botão de compartilhar e um de favoritar a receita'
   });
 });
 
-describe('43 - Implemente a solução de forma que, ao clicar no botão de compartilhar, o link da receita dentro do app deve ser copiado para o clipboard e uma mensagem avisando que o link foi copiado deve aparecer', () => {
+describe.skip('43 - Implemente a solução de forma que, ao clicar no botão de compartilhar, o link da receita dentro do app deve ser copiado para o clipboard e uma mensagem avisando que o link foi copiado deve aparecer', () => {
   it('Verifica a mensagem "Link copied!" e se o link da receita da comida foi copiado para o clipboard', () => {
     cy.visit('http://localhost:3000/foods/52771', {
       onBeforeLoad(win) {
@@ -401,7 +401,7 @@ describe('43 - Implemente a solução de forma que, ao clicar no botão de compa
   });
 });
 
-describe('44 - Implemente o ícone do coração (favorito) de maneira que, deve vir preenchido caso a receita esteja favoritada e "despreenchido" caso contrário', () => {
+describe.skip('44 - Implemente o ícone do coração (favorito) de maneira que, deve vir preenchido caso a receita esteja favoritada e "despreenchido" caso contrário', () => {
   it('Verifica se a comida favoritada vem com o coração preenchido', () => {
     cy.visit('http://localhost:3000/foods/52771', {
       onBeforeLoad(win) {
@@ -471,7 +471,7 @@ describe('44 - Implemente o ícone do coração (favorito) de maneira que, deve 
   });
 });
 
-describe('45 - Implemente a lógica no botão de favoritar, caso seja clicado, o ícone do coração deve mudar seu estado atual, caso esteja preenchido deve mudar para "despreenchido" e vice-versa', () => {
+describe.skip('45 - Implemente a lógica no botão de favoritar, caso seja clicado, o ícone do coração deve mudar seu estado atual, caso esteja preenchido deve mudar para "despreenchido" e vice-versa', () => {
   it('Favorita a comida', () => {
     cy.visit('http://localhost:3000/foods/52771', {
       onBeforeLoad(win) {
@@ -564,7 +564,7 @@ describe('45 - Implemente a lógica no botão de favoritar, caso seja clicado, o
   });
 });
 
-describe('46 - Salve as receitas favoritas no `localStorage` na chave `favoriteRecipes`', () => {
+describe.skip('46 - Salve as receitas favoritas no `localStorage` na chave `favoriteRecipes`', () => {
   it('Verifica se após favoritar receita de uma comida, ela é salva corretamente no localStorage', () => {
     cy.visit('http://localhost:3000/foods/52771', {
       onBeforeLoad(win) {
