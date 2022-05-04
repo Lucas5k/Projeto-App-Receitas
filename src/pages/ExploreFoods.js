@@ -23,13 +23,12 @@ function ExploreFoods() {
       >
         By Nationality
       </Link>
-
       <Link
         to={ `/foods/${idMeal}` }
         data-testid="explore-surprise"
         onClick={ handleRandom }
       >
-        <button type="button">Surprise me!</button>
+        Surprise me!
       </Link>
     </main>
   );

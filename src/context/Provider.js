@@ -184,13 +184,14 @@ function Provider({ children }) {
     const urlRandomMeals = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
     const dataURLMeals = await urlRandomMeals.json();
     const mealsRandom = dataURLMeals && dataURLMeals.meals;
+
     const urlRandomDrinks = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php ');
     const dataURLDrinks = await urlRandomDrinks.json();
     const drinksRandom = dataURLDrinks && dataURLDrinks.drinks;
 
     /*     const drinks = drinksRandom && drinksRandom.map((drink) => drink);
     const foods = mealsRandom && mealsRandom.map((food) => food); */
-    if (pathname === '/foods') {
+    if (pathname === '/explore/foods') {
       setResultsRandomFoods(mealsRandom);
     } else {
       setResultsRandomDrinks(drinksRandom);
