@@ -29,6 +29,7 @@ function Drinks() {
           const maxCategory = 5;
           return index < maxCategory && (
             <ButtonCategory
+              key={ index }
               category={ category }
             />);
         })
@@ -49,6 +50,7 @@ function Drinks() {
           const maxRecipes = 12;
           return index < maxRecipes && (
             <RecipeCard
+              key={ index }
               data-testid={ `${index}-recipe-card` }
               index={ index }
               recipe={ recipe }
