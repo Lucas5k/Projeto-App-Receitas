@@ -28,7 +28,7 @@ function Foods() {
         foodsCategory && foodsCategory.map((category, index) => {
           const maxCategory = 5;
           return index < maxCategory && (
-            <section>
+            <section key={ index }>
               <ButtonCategory
                 category={ category }
               />
@@ -50,9 +50,8 @@ function Foods() {
         checkingfilter && checkingfilter.map((recipe, index) => {
           const maxRecipes = 12;
           return index < maxRecipes && (
-            <section>
+            <section key={ index }>
               <RecipeCard
-                data-testid={ `${index}-recipe-card` }
                 index={ index }
                 recipe={ recipe }
               />
