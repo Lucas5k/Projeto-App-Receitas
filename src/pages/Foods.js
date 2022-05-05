@@ -52,7 +52,6 @@ function Foods() {
           return index < maxRecipes && (
             <section key={ index }>
               <RecipeCard
-                data-testid={ `${index}-recipe-card` }
                 index={ index }
                 recipe={ recipe }
               />
