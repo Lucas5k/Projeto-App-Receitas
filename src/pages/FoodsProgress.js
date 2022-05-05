@@ -5,7 +5,7 @@ function ProgressFoods() {
   return (
     <section>
       <h1>FoodsProgress</h1>
-      <ProgressRecipe />
+      <ProgressRecipe pageDetails="foods" />
     </section>
   );
 }
