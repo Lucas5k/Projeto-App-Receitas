@@ -51,7 +51,6 @@ function Drinks() {
           return index < maxRecipes && (
             <RecipeCard
               key={ index }
-              data-testid={ `${index}-recipe-card` }
               index={ index }
               recipe={ recipe }
             />);
