@@ -13,8 +13,8 @@ import DoneRecipes from '../pages/DoneRecipes';
 import FavoritesRecipes from '../pages/FavoriteRecipes';
 import DetailsFoods from '../pages/DetailsFoods';
 import DetailsDrinks from '../pages/DetailsDrinks';
-import FoodsProgress from '../pages/FoodsProgress ';
 import DrinksProgress from '../pages/DrinksProgress';
+import ProgressFoods from '../pages/ProgressFoods';
 
 function RouteRecipes() {
   return (
@@ -22,10 +22,14 @@ function RouteRecipes() {
       <Route exact path="/" component={ Login } />
       <Route exact path="/foods" component={ Foods } />
       <Route exact path="/drinks" component={ Drinks } />
-      <Route path="/foods/:id" component={ DetailsFoods } />
-      <Route path="/drinks/:id" component={ DetailsDrinks } />
-      <Route path="/foods/:id-da-receita/in-progress" component={ FoodsProgress } />
-      <Route path="/drinks/:id-da-receita/in-progress" component={ DrinksProgress } />
+      <Route exact path="/foods/:id" component={ DetailsFoods } />
+      <Route exact path="/drinks/:id" component={ DetailsDrinks } />
+      <Route path="/foods/:id/in-progress" component={ ProgressFoods } />
+      <Route
+        exact
+        path="/drinks/:id/in-progress"
+        component={ DrinksProgress }
+      />
       <Route exact path="/explore" component={ Explore } />
       <Route exact path="/explore/foods" component={ ExploreFoods } />
       <Route exact path="/explore/drinks" component={ ExploreDrinks } />
