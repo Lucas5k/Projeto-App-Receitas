@@ -1,13 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import './ProgressRecipe.css';
 import { useLocation } from 'react-router-dom';
-import contextGlobal from '../context';
 import FavoriteButton from '../components/FavoriteButton';
 import ShareIcon from '../images/shareIcon.svg';
 import getIngredientsAndMeasures from '../helpers/getIngredientsAndMeasures';
+import { requestRecipe } from '../helpers/requestAPIs';
+
+const copy = require('clipboard-copy');
 
 function ProgressRecipe({ pageDetails }) {
-  const { progressRecipe } = useContext(contextGlobal);
+  const [isRisk, setIsRisk] = useState([]);
+  const [recipe, setRecipe] = useState({});
   const [conditionalsVariables, setConditionalsVariables] = useState({
     recipeTitle: '',
     recipeImgSource: '',
@@ -19,31 +23,72 @@ function ProgressRecipe({ pageDetails }) {
 
   const { pathname } = useLocation();
   const id = pathname.split('/')[2];
+  useEffect(() => {
+    const getRecipe = async () => {
+      const recipeData = await requestRecipe(pageDetails, id);
+      setRecipe(...recipeData);
+      getIngredientsAndMeasures(recipeData[0]);
+    };
+    getRecipe();
+  }, []);
 
   useEffect(() => {
-    setIngredientsAndMeasures(getIngredientsAndMeasures(progressRecipe));
+    setIngredientsAndMeasures(getIngredientsAndMeasures(recipe));
     const statements = () => {
-      if (pageDetails === 'foods') {
+      if (pageDetails === 'FoodsProgress') {
         setConditionalsVariables({
-          recipeTitle: progressRecipe.strMeal,
-          recipeImgSource: progressRecipe.strMealThumb,
+          recipeTitle: recipe.strMeal,
+          recipeImgSource: recipe.strMealThumb,
           recipeAlcoholic: null,
         });
       }
-      if (pageDetails === 'drinks') {
+      if (pageDetails === 'DrinksProgress') {
         setConditionalsVariables({
-          recipeTitle: progressRecipe.strDrink,
-          recipeImgSource: progressRecipe.strDrinkThumb,
-          recipeAlcoholic: progressRecipe.strAlcoholic,
+          recipeTitle: recipe.strDrink,
+          recipeImgSource: recipe.strDrinkThumb,
+          recipeAlcoholic: recipe.strAlcoholic,
         });
       }
     };
     statements();
-  }, [progressRecipe]);
+  }, [recipe]);
 
   const handleShare = () => {
-    copy(`http://localhost:3000${pathname}`);
+    const test = pageDetails === 'FoodsProgress'
+      ? copy(`http://localhost:3000/foods/${id}`) : copy(`http://localhost:3000/drinks/${id}`);
+
+    console.log(pathname);
     setIsLinkCopied(true);
+    return test;
+  };
+
+  const handleChange = (ingredient) => {
+    // console.log(i);
+    // // const test = [...isRisk, { [`${i}`]: e.target.checked }];
+    // const teste2 = isRisk.map((elemento) => (Object.keys(elemento).includes(i)
+    //   ? { [i]: !elemento[i] } : { [`${i}`]: e.target.checked }));
+    // console.log([...isRisk, teste2]);
+    // // setIsRisk(teste2);
+    // if (!isRisk.length) {
+    //   setIsRisk([{ [`${i}`]: e.target.checked }]);
+    // } else {
+    //   const teste = isRisk.map((ele) => {
+    //     const teste2 = Object.keys(ele).includes(String(i));
+    //     console.log();
+    //     if (teste2) {
+    //       return null;
+    //     }
+    //     return { [`${i}`]: true };
+    //   });
+    //   console.log(isRisk);
+    //   setIsRisk(teste);
+    // }
+    let arr = [];
+    if (isRisk.includes(ingredient)) {
+      arr = isRisk.filter((el) => el !== ingredient);
+    } else {
+      arr = [...isRisk, ingredient];
+    } setIsRisk(arr);
   };
 
   return (
@@ -66,31 +111,34 @@ function ProgressRecipe({ pageDetails }) {
       >
         <img src={ ShareIcon } alt="Share Icon" />
       </button>
-      { isLinkCopied && <span>Link copied!</span>}
-      <FavoriteButton id={ id } recipe={ progressRecipe } pageDetails={ pageDetails } />
+      { isLinkCopied && <span>Link copied!</span> }
+      <FavoriteButton id={ id } recipe={ recipe } pageDetails={ pageDetails } />
       <span data-testid="recipe-category">
-        { progressRecipe.strCategory }
+        { recipe.strCategory }
         {''}
-        { progressRecipe.strAlcoholic && ` (${progressRecipe.strAlcoholic})`}
+        { recipe.strAlcoholic && ` (${recipe.strAlcoholic})`}
       </span>
       <div>
         {
-          ingredientsAndMeasures.map((ingredientObject, index) => (
+          ingredientsAndMeasures
+          && ingredientsAndMeasures.map((ingredientObject, index) => (
             <label
               htmlFor={ `ingredient${index}` }
               data-testid={ `${index}-ingredient-step` }
               key={ index }
+              className={ isRisk.includes(ingredientObject.ingredient)
+                && 'taskScratched' }
+              onChange={ () => handleChange(ingredientObject.ingredient) }
             >
-              {ingredientObject.ingredient}
               <input
                 id={ `ingredient${index}` }
                 type="checkbox"
               />
-            </label>
-          ))
+              {ingredientObject.ingredient}
+            </label>))
         }
       </div>
-      <p data-testid="instructions">{ progressRecipe.strInstructions }</p>
+      <p data-testid="instructions">{ recipe.strInstructions }</p>
       <button
         type="button"
         data-testid="finish-recipe-btn"

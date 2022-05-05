@@ -1,13 +1,13 @@
 import React from 'react';
 import ProgressRecipe from './ProgressRecipe';
 
-function ProgressFoods() {
+function FoodsProgress() {
   return (
     <section>
       <h1>FoodsProgress</h1>
-      <ProgressRecipe pageDetails="foods" />
+      <ProgressRecipe pageDetails="FoodsProgress" />
     </section>
   );
 }
 
-export default ProgressFoods;
+export default FoodsProgress;

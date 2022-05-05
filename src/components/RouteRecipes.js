@@ -24,7 +24,7 @@ function RouteRecipes() {
       <Route exact path="/drinks" component={ Drinks } />
       <Route exact path="/foods/:id" component={ DetailsFoods } />
       <Route exact path="/drinks/:id" component={ DetailsDrinks } />
-      <Route path="/foods/:id/in-progress" component={ FoodsProgress } />
+      <Route exact path="/foods/:id/in-progress" component={ FoodsProgress } />
       <Route
         exact
         path="/drinks/:id/in-progress"
