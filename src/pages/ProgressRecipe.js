@@ -63,26 +63,6 @@ function ProgressRecipe({ pageDetails }) {
   };
 
   const handleChange = (ingredient) => {
-    // console.log(i);
-    // // const test = [...isRisk, { [`${i}`]: e.target.checked }];
-    // const teste2 = isRisk.map((elemento) => (Object.keys(elemento).includes(i)
-    //   ? { [i]: !elemento[i] } : { [`${i}`]: e.target.checked }));
-    // console.log([...isRisk, teste2]);
-    // // setIsRisk(teste2);
-    // if (!isRisk.length) {
-    //   setIsRisk([{ [`${i}`]: e.target.checked }]);
-    // } else {
-    //   const teste = isRisk.map((ele) => {
-    //     const teste2 = Object.keys(ele).includes(String(i));
-    //     console.log();
-    //     if (teste2) {
-    //       return null;
-    //     }
-    //     return { [`${i}`]: true };
-    //   });
-    //   console.log(isRisk);
-    //   setIsRisk(teste);
-    // }
     let arr = [];
     if (isRisk.includes(ingredient)) {
       arr = isRisk.filter((el) => el !== ingredient);
