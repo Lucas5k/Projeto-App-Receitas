@@ -54,24 +54,9 @@ function ProgressRecipe({ pageDetails }) {
   }, [recipe]);
 
   useEffect(() => {
-    if (pageDetails === 'FoodsProgress') {
-      const meals = {
-        meals: {
-          [`${id}`]: [...isRisk],
-        },
-        cocktails: {},
-      };
-      localStorage.setItem('inProgressRecipes', JSON.stringify(meals));
-    } else {
-      const drinks = {
-        meals: {},
-        cocktails: {
-          [`${id}`]: [...isRisk],
-        },
-      };
-      localStorage.setItem('inProgressRecipes', JSON.stringify(drinks));
-    }
-  }, [isRisk]);
+    const test = localStorage.getItem(JSON.parse('inProgressRecipe'));
+    console.log(test);
+  });
 
   const handleShare = () => {
     const test = pageDetails === 'FoodsProgress'
@@ -81,6 +66,8 @@ function ProgressRecipe({ pageDetails }) {
     setIsLinkCopied(true);
     return test;
   };
+  // se a lógica do Storage é no handleChange, e com [...arr], quando recarrega a pag
+  // os elementos continuam salvos em Application, se no useEffect com [...isRisk], não ficam salvos.
 
   const handleChange = (ingredient) => {
     let arr = [];
@@ -89,6 +76,23 @@ function ProgressRecipe({ pageDetails }) {
     } else {
       arr = [...isRisk, ingredient];
     } setIsRisk(arr);
+    if (pageDetails === 'FoodsProgress') {
+      const meals = {
+        meals: {
+          [`${id}`]: [...arr],
+        },
+        cocktails: {},
+      };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(meals));
+    } else {
+      const drinks = {
+        meals: {},
+        cocktails: {
+          [`${id}`]: [...arr],
+        },
+      };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(drinks));
+    }
   };
 
   return (
