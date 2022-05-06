@@ -53,6 +53,18 @@ function ProgressRecipe({ pageDetails }) {
     statements();
   }, [recipe]);
 
+  useEffect(() => {
+    if (pageDetails === 'FoodsProgress') {
+      const meals = {
+        meals: {
+          [`${id}`]: [...isRisk],
+        },
+      };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(meals));
+    }
+    // console.log(inProgressRecipes);
+  }, [isRisk]);
+
   const handleShare = () => {
     const test = pageDetails === 'FoodsProgress'
       ? copy(`http://localhost:3000/foods/${id}`) : copy(`http://localhost:3000/drinks/${id}`);
@@ -68,7 +80,26 @@ function ProgressRecipe({ pageDetails }) {
       arr = isRisk.filter((el) => el !== ingredient);
     } else {
       arr = [...isRisk, ingredient];
+      // const progressRecipes = {
+      //   inProgressRecipes: {
+      //     cocktails: {
+      //       []: [],
+      //     },
+      //     meals: {
+      //       id: [],
+      //     },
+      //   },
+      // };
     } setIsRisk(arr);
+    // if (pageDetails === 'FoodsProgress') {
+    //   const meals = {
+    //     meals: {
+    //       [`${id}`]: [...arr],
+    //     },
+    //   };
+    //   localStorage.setItem('inProgressRecipes', JSON.stringify(meals));
+    // }
+    // console.log(inProgressRecipes);
   };
 
   return (
