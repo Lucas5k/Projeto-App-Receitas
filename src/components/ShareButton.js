@@ -5,14 +5,18 @@ import ShareIcon from '../images/shareIcon.svg';
 
 const copy = require('clipboard-copy');
 
-function ShareButton({ index }) {
+function ShareButton({ index, recipeType, id }) {
   const { pathname } = useLocation();
-  /*   const isInDetailsRecipe = pathname.includes('foods') || pathname.includes('drinks'); */
+  const isInDetailsRecipe = pathname.includes('foods') || pathname.includes('drinks');
 
   const [isLinkCopied, setIsLinkCopied] = useState(false);
 
   const handleShare = () => {
-    copy(`http://localhost:3000${pathname}`);
+    if (isInDetailsRecipe) {
+      copy(`http://localhost:3000${pathname}`);
+    } else {
+      copy(`http://localhost:3000/${recipeType}s/${id}`);
+    }
     setIsLinkCopied(true);
   };
 
@@ -40,6 +44,8 @@ ShareButton.defaultProps = {
 
 ShareButton.propTypes = {
   index: PropTypes.number,
+  recipeType: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default ShareButton;

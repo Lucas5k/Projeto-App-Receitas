@@ -19,7 +19,11 @@ function DoneRecipeCard({ doneRecipe, index }) {
       </span>
       <span data-testid={ `${index}-horizontal-name` }>{doneRecipe.name}</span>
       <span data-testid={ `${index}-horizontal-done-date` }>{doneRecipe.doneDate}</span>
-      <ShareButton index={ index } />
+      <ShareButton
+        index={ index }
+        recipeType={ doneRecipe.type }
+        id={ doneRecipe.id }
+      />
       { doneRecipe.tags.length && doneRecipe.tags.map((tag, i) => {
         const maxTags = 2;
         return i < maxTags && (
