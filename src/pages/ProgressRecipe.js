@@ -59,10 +59,18 @@ function ProgressRecipe({ pageDetails }) {
         meals: {
           [`${id}`]: [...isRisk],
         },
+        cocktails: {},
       };
       localStorage.setItem('inProgressRecipes', JSON.stringify(meals));
+    } else {
+      const drinks = {
+        meals: {},
+        cocktails: {
+          [`${id}`]: [...isRisk],
+        },
+      };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(drinks));
     }
-    // console.log(inProgressRecipes);
   }, [isRisk]);
 
   const handleShare = () => {
@@ -80,26 +88,7 @@ function ProgressRecipe({ pageDetails }) {
       arr = isRisk.filter((el) => el !== ingredient);
     } else {
       arr = [...isRisk, ingredient];
-      // const progressRecipes = {
-      //   inProgressRecipes: {
-      //     cocktails: {
-      //       []: [],
-      //     },
-      //     meals: {
-      //       id: [],
-      //     },
-      //   },
-      // };
     } setIsRisk(arr);
-    // if (pageDetails === 'FoodsProgress') {
-    //   const meals = {
-    //     meals: {
-    //       [`${id}`]: [...arr],
-    //     },
-    //   };
-    //   localStorage.setItem('inProgressRecipes', JSON.stringify(meals));
-    // }
-    // console.log(inProgressRecipes);
   };
 
   return (
