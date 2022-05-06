@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './ProgressRecipe.css';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import FavoriteButton from '../components/FavoriteButton';
 import ShareIcon from '../images/shareIcon.svg';
 import getIngredientsAndMeasures from '../helpers/getIngredientsAndMeasures';
@@ -10,7 +10,6 @@ import { requestRecipe } from '../helpers/requestAPIs';
 const copy = require('clipboard-copy');
 
 function ProgressRecipe({ pageDetails }) {
-  const [isRisk, setIsRisk] = useState([]);
   const [recipe, setRecipe] = useState({});
   const [conditionalsVariables, setConditionalsVariables] = useState({
     recipeTitle: '',
@@ -20,6 +19,8 @@ function ProgressRecipe({ pageDetails }) {
   });
   const [isLinkCopied, setIsLinkCopied] = useState(false);
   const [ingredientsAndMeasures, setIngredientsAndMeasures] = useState([]);
+  const [resultsStorage, setResultsStorage] = useState([]);
+  const [isDisabledButton, setIsDisabledButton] = useState(true);
 
   const { pathname } = useLocation();
   const id = pathname.split('/')[2];
@@ -54,47 +55,67 @@ function ProgressRecipe({ pageDetails }) {
   }, [recipe]);
 
   useEffect(() => {
-    const test = localStorage.getItem(JSON.parse('inProgressRecipe'));
-    console.log(test);
-  });
+    const recipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (!recipes) {
+      const recips = {
+        meals: { [`${id}`]: [] },
+        cocktails: { [`${id}`]: [] },
+      };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(recips));
+    } else {
+      const mealsValidation = recipes && recipes.meals;
+      const cocktailsValidation = recipes && recipes.cocktails;
+      if (pageDetails === 'FoodsProgress') {
+        const mealsIdValidation = mealsValidation && mealsValidation[`${id}`];
+        setResultsStorage(mealsIdValidation);
+      } else {
+        const drinksIdValidation = cocktailsValidation && cocktailsValidation[`${id}`];
+        setResultsStorage(drinksIdValidation);
+      }
+    }
+  }, []);
 
   const handleShare = () => {
-    const test = pageDetails === 'FoodsProgress'
+    const pageCopy = pageDetails === 'FoodsProgress'
       ? copy(`http://localhost:3000/foods/${id}`) : copy(`http://localhost:3000/drinks/${id}`);
-
-    console.log(pathname);
     setIsLinkCopied(true);
-    return test;
+    return pageCopy;
   };
   // se a lógica do Storage é no handleChange, e com [...arr], quando recarrega a pag
   // os elementos continuam salvos em Application, se no useEffect com [...isRisk], não ficam salvos.
 
   const handleChange = (ingredient) => {
     let arr = [];
-    if (isRisk.includes(ingredient)) {
-      arr = isRisk.filter((el) => el !== ingredient);
+    if (resultsStorage.includes(ingredient)) {
+      arr = resultsStorage.filter((el) => el !== ingredient);
     } else {
-      arr = [...isRisk, ingredient];
-    } setIsRisk(arr);
+      arr = [...resultsStorage, ingredient];
+    }
+    setResultsStorage(arr);
+    const recipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
     if (pageDetails === 'FoodsProgress') {
       const meals = {
         meals: {
+          ...recipes.meals,
           [`${id}`]: [...arr],
         },
-        cocktails: {},
+        cocktails: { ...recipes.cocktails },
       };
       localStorage.setItem('inProgressRecipes', JSON.stringify(meals));
     } else {
       const drinks = {
-        meals: {},
+        meals: { ...recipes.meals },
         cocktails: {
+          ...recipes.cocktails,
           [`${id}`]: [...arr],
         },
       };
       localStorage.setItem('inProgressRecipes', JSON.stringify(drinks));
     }
-  };
 
+    setIsDisabledButton(arr.length !== ingredientsAndMeasures.length);
+  };
+  const { push } = useHistory();
   return (
     <main>
       <h1
@@ -130,13 +151,16 @@ function ProgressRecipe({ pageDetails }) {
               htmlFor={ `ingredient${index}` }
               data-testid={ `${index}-ingredient-step` }
               key={ index }
-              className={ isRisk.includes(ingredientObject.ingredient)
+              className={ resultsStorage
+                && resultsStorage.includes(ingredientObject.ingredient)
                 && 'taskScratched' }
               onChange={ () => handleChange(ingredientObject.ingredient) }
             >
               <input
                 id={ `ingredient${index}` }
                 type="checkbox"
+                checked={ resultsStorage
+                  && resultsStorage.includes(ingredientObject.ingredient) }
               />
               {ingredientObject.ingredient}
             </label>))
@@ -146,6 +170,8 @@ function ProgressRecipe({ pageDetails }) {
       <button
         type="button"
         data-testid="finish-recipe-btn"
+        disabled={ isDisabledButton }
+        onClick={ () => push('/done-recipes') }
       >
         Finish
       </button>
