@@ -7,7 +7,7 @@ const copy = require('clipboard-copy');
 
 function ShareButton({ index }) {
   const { pathname } = useLocation();
-  const isInDetailsRecipe = pathname.includes('foods') || pathname.includes('drinks');
+  /*   const isInDetailsRecipe = pathname.includes('foods') || pathname.includes('drinks'); */
 
   const [isLinkCopied, setIsLinkCopied] = useState(false);
 
@@ -20,10 +20,14 @@ function ShareButton({ index }) {
     <>
       <button
         type="button"
-        data-testid={ isInDetailsRecipe ? 'share-btn' : `${index}-horizontal-share-btn` }
+        data-testid="share-btn"
         onClick={ handleShare }
       >
-        <img src={ ShareIcon } alt="Share Icon" />
+        <img
+          src={ ShareIcon }
+          alt="Share Icon"
+          data-testid={ `${index}-horizontal-share-btn` }
+        />
       </button>
       { isLinkCopied && <span>Link copied!</span>}
     </>
