@@ -2,14 +2,12 @@ import PropTypes from 'prop-types';
 import React, { useContext, useEffect, useState } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import { requestRecipe, requestRecomendation } from '../helpers/requestAPIs';
-import { getDoneRecipes, getContinueRecipe } from '../helpers/getRecipes';
+import { verifyIfIsDoneRecipe, getContinueRecipe } from '../helpers/getRecipes';
 import getIngredientsAndMeasures from '../helpers/getIngredientsAndMeasures';
-import ShareIcon from '../images/shareIcon.svg';
 import Carousel from './Carousel';
 import FavoriteButton from './FavoriteButton';
+import ShareButton from './ShareButton';
 import contextGlobal from '../context';
-
-const copy = require('clipboard-copy');
 
 function DetailsRecipe({ pageDetails }) {
   const { setProgressRecipe } = useContext(contextGlobal);
@@ -28,7 +26,6 @@ function DetailsRecipe({ pageDetails }) {
   });
   const [isDoneRecipe, setIsDoneRecipe] = useState(false);
   const [inProgressRecipe, setInProgressRecipe] = useState(false);
-  const [isLinkCopied, setIsLinkCopied] = useState(false);
 
   useEffect(() => {
     const getRecipe = async () => {
@@ -42,7 +39,7 @@ function DetailsRecipe({ pageDetails }) {
   }, []);
 
   useEffect(() => {
-    setIsDoneRecipe(getDoneRecipes(id));
+    setIsDoneRecipe(verifyIfIsDoneRecipe(id));
     setInProgressRecipe(getContinueRecipe(id, pageDetails));
   }, []);
 
@@ -69,11 +66,6 @@ function DetailsRecipe({ pageDetails }) {
     statements();
   }, [recipe]);
 
-  const handleShare = () => {
-    copy(`http://localhost:3000${pathname}`);
-    setIsLinkCopied(true);
-  };
-
   const toogleToProgress = () => {
     history.push(`${pathname}/in-progress`);
     setProgressRecipe(recipe);
@@ -92,14 +84,7 @@ function DetailsRecipe({ pageDetails }) {
         alt="recipe"
         data-testid="recipe-photo"
       />
-      <button
-        type="button"
-        data-testid="share-btn"
-        onClick={ handleShare }
-      >
-        <img src={ ShareIcon } alt="Share Icon" />
-      </button>
-      { isLinkCopied && <span>Link copied!</span>}
+      <ShareButton />
       <FavoriteButton id={ id } recipe={ recipe } pageDetails={ pageDetails } />
       <span data-testid="recipe-category">
         { recipe.strCategory }

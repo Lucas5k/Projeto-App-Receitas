@@ -1,5 +1,7 @@
-export const getDoneRecipes = (id) => {
-  const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+export const getDoneRecipes = () => JSON.parse(localStorage.getItem('doneRecipes'));
+
+export const verifyIfIsDoneRecipe = (id) => {
+  const doneRecipes = getDoneRecipes();
   if (doneRecipes) {
     return doneRecipes.some((doneRecipe) => doneRecipe.id === id);
   }
