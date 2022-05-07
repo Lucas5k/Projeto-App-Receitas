@@ -20,6 +20,7 @@ function Provider({ children }) {
   const [resultsFilterDrinks, setResultsFilterDrinks] = useState([]);
   const [resultsRandomFoods, setResultsRandomFoods] = useState([]);
   const [resultsRandomDrinks, setResultsRandomDrinks] = useState([]);
+  const [progressRecipe, setProgressRecipe] = useState([]);
 
   const toogleInput = () => {
     if (count === 1) {
@@ -222,6 +223,8 @@ function Provider({ children }) {
     handleRandom,
     resultsRandomFoods,
     resultsRandomDrinks,
+    progressRecipe,
+    setProgressRecipe,
   };
 
   return (
