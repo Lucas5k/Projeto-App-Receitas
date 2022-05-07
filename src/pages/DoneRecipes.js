@@ -9,8 +9,9 @@ function DoneRecipes() {
   const [filteredDoneRecipes, setFilteredDoneRecipes] = useState([]);
 
   useEffect(() => {
-    setAllDoneRecipes(getDoneRecipes());
-    setFilteredDoneRecipes(getDoneRecipes());
+    const doneRecipes = getDoneRecipes() || [];
+    setAllDoneRecipes(doneRecipes);
+    setFilteredDoneRecipes(doneRecipes);
   }, []);
 
   const filterDoneRecipes = ({ target }) => {
