@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import { requestRecipe, requestRecomendation } from '../helpers/requestAPIs';
 import { getDoneRecipes, getContinueRecipe } from '../helpers/getRecipes';
@@ -7,10 +7,12 @@ import getIngredientsAndMeasures from '../helpers/getIngredientsAndMeasures';
 import ShareIcon from '../images/shareIcon.svg';
 import Carousel from './Carousel';
 import FavoriteButton from './FavoriteButton';
+import contextGlobal from '../context';
 
 const copy = require('clipboard-copy');
 
 function DetailsRecipe({ pageDetails }) {
+  const { setProgressRecipe } = useContext(contextGlobal);
   const { pathname } = useLocation();
   const id = pathname.split('/')[2];
   const history = useHistory();
@@ -70,6 +72,11 @@ function DetailsRecipe({ pageDetails }) {
   const handleShare = () => {
     copy(`http://localhost:3000${pathname}`);
     setIsLinkCopied(true);
+  };
+
+  const toogleToProgress = () => {
+    history.push(`${pathname}/in-progress`);
+    setProgressRecipe(recipe);
   };
 
   return (
@@ -134,7 +141,7 @@ function DetailsRecipe({ pageDetails }) {
             type="button"
             data-testid="start-recipe-btn"
             style={ { position: 'fixed', bottom: '0', right: '0' } }
-            onClick={ () => history.push(`${pathname}/in-progress`) }
+            onClick={ toogleToProgress }
           >
             { inProgressRecipe ? 'Continue Recipe' : 'Start Recipe' }
           </button>

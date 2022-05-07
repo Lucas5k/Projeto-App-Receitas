@@ -5,7 +5,7 @@ export function getFavorites(id) {
 
 export function saveFavorites(recipe, pageDetails) {
   const favorites = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
-  const isRecipeFood = pageDetails === 'foods';
+  const isRecipeFood = pageDetails === 'foods' || pageDetails === 'FoodsProgress';
   const reducedReceipe = {
     id: isRecipeFood ? recipe.idMeal : recipe.idDrink,
     type: isRecipeFood ? 'food' : 'drink',
