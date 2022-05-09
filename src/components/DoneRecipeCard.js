@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import FavoriteButton from './FavoriteButton';
 import ShareButton from './ShareButton';
 
-function DoneRecipeCard({ doneRecipe, index }) {
+function DoneRecipeCard({ doneRecipe, index, isFavoritePage }) {
   return (
     <div>
       <Link
@@ -32,20 +33,32 @@ function DoneRecipeCard({ doneRecipe, index }) {
         recipeType={ doneRecipe.type }
         id={ doneRecipe.id }
       />
-      { doneRecipe.tags.length && doneRecipe.tags.map((tag, i) => {
+      { isFavoritePage && (
+        <FavoriteButton
+          name={ doneRecipe.name }
+          recipe={ doneRecipe }
+          pageDetails={ `${doneRecipe.type}s` }
+          isFavoritePage
+          index={ index }
+        />) }
+      { doneRecipe.tags && doneRecipe.tags.length && doneRecipe.tags.map((tag, i) => {
         const maxTags = 2;
         return i < maxTags && (
           <span data-testid={ `${index}-${tag}-horizontal-tag` } key={ i }>{tag}</span>
         );
       })}
-      ;
     </div>
   );
 }
 
+DoneRecipeCard.defaultProps = {
+  isFavoritePage: false,
+};
+
 DoneRecipeCard.propTypes = {
   doneRecipe: PropTypes.objectOf(PropTypes.any).isRequired,
   index: PropTypes.number.isRequired,
+  isFavoritePage: PropTypes.bool,
 };
 
 export default DoneRecipeCard;

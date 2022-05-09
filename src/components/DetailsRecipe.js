@@ -85,7 +85,11 @@ function DetailsRecipe({ pageDetails }) {
         data-testid="recipe-photo"
       />
       <ShareButton />
-      <FavoriteButton id={ id } recipe={ recipe } pageDetails={ pageDetails } />
+      <FavoriteButton
+        name={ conditionalsVariables.recipeTitle }
+        recipe={ recipe }
+        pageDetails={ pageDetails }
+      />
       <span data-testid="recipe-category">
         { recipe.strCategory }
         {''}

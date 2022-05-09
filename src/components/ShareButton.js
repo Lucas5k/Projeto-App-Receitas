@@ -40,12 +40,15 @@ function ShareButton({ index, recipeType, id }) {
 
 ShareButton.defaultProps = {
   index: null,
+  recipeType: null,
+  id: null,
+
 };
 
 ShareButton.propTypes = {
   index: PropTypes.number,
-  recipeType: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  recipeType: PropTypes.string,
+  id: PropTypes.string,
 };
 
 export default ShareButton;
