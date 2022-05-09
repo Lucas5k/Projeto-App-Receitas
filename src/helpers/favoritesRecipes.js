@@ -4,7 +4,8 @@ export function getFavorites() {
 
 export function verifyIfIsFavorites(name) {
   const favorites = getFavorites();
-  return favorites && favorites.some((recipe) => recipe.name === name);
+  return favorites && favorites
+    .some((recipe) => Object.values(recipe).includes(name));
 }
 
 export function saveFavorites(recipe, pageDetails) {

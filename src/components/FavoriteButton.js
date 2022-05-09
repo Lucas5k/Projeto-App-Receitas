@@ -1,13 +1,22 @@
 import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import contextGlobal from '../context';
-import { verifyIfIsFavorites } from '../helpers/favoritesRecipes';
+import { verifyIfIsFavorites, getFavorites } from '../helpers/favoritesRecipes';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 
 function FavoriteButton({ name, recipe, pageDetails, isFavoritePage, index }) {
-  const { handleFavorites } = useContext(contextGlobal);
+  const { handleFavorites,
+    setAllFavoritesRecipes,
+    setFilteredFavoritesRecipes,
+  } = useContext(contextGlobal);
   const isFavoriteRecipe = verifyIfIsFavorites(name);
+
+  useEffect(() => {
+    const favoritesRecipes = getFavorites() || [];
+    setAllFavoritesRecipes(favoritesRecipes);
+    setFilteredFavoritesRecipes(favoritesRecipes);
+  }, []);
 
   return (
     <button

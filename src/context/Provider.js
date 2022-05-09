@@ -186,9 +186,9 @@ function Provider({ children }) {
     const isRecipeFavorite = allFavoritesRecipes
       .some((favoriteRecipe) => {
         const values = Object.values(favoriteRecipe).includes(name);
-        console.log(values);
         return values;
       });
+    console.log(isRecipeFavorite);
     if (isRecipeFavorite) {
       removeFavorites(name);
       const newFavoritesRecipes = getFavorites();
