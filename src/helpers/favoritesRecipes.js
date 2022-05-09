@@ -1,6 +1,11 @@
-export function getFavorites(id) {
-  const favorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
-  return favorites && favorites.some((recipe) => recipe.id === id);
+export function getFavorites() {
+  return JSON.parse(localStorage.getItem('favoriteRecipes'));
+}
+
+export function verifyIfIsFavorites(name) {
+  const favorites = getFavorites();
+  return favorites && favorites
+    .some((recipe) => Object.values(recipe).includes(name));
 }
 
 export function saveFavorites(recipe, pageDetails) {
@@ -16,12 +21,11 @@ export function saveFavorites(recipe, pageDetails) {
     image: isRecipeFood ? recipe.strMealThumb : recipe.strDrinkThumb,
   };
   const updatedKey = [...favorites, reducedReceipe];
-  console.log(updatedKey);
   localStorage.setItem('favoriteRecipes', JSON.stringify(updatedKey));
 }
 
-export function removeFavorites(id) {
+export function removeFavorites(name) {
   const favorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
-  const updatedKey = favorites && favorites.filter((recipe) => recipe.id !== id);
+  const updatedKey = favorites && favorites.filter((recipe) => recipe.name !== name);
   localStorage.setItem('favoriteRecipes', JSON.stringify(updatedKey));
 }
