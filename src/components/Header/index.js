@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
-import profileIcon from '../../images/profileIcon.svg';
+import profileIcon from '../../assets/profileIcon.svg';
 import searchIcon from '../../images/searchIcon.svg';
 import contextGlobal from '../../context';
 import { ContainerHeader } from './style';
@@ -22,18 +22,31 @@ function Header({ name }) {
 
   return (
     <ContainerHeader>
+      <h2>Chef Cook</h2>
       <h1 data-testid="page-title">{name}</h1>
-      <Link to="/profile">
+      <div className="btns-profile-and-search">
+        <Link to="/profile">
+          <button
+            type="button"
+          >
+            <img
+              src={ profileIcon }
+              alt="Profile Icon"
+              data-testid="profile-top-btn"
+            />
+          </button>
+        </Link>
         <button
           type="button"
+          onClick={ toogleInput }
         >
           <img
-            src={ profileIcon }
-            alt="Profile Icon"
-            data-testid="profile-top-btn"
+            src={ searchIcon }
+            alt="Search Icon"
+            data-testid="search-top-btn"
           />
         </button>
-      </Link>
+      </div>
       {
         !disabledInput ? (
           <input
@@ -47,16 +60,6 @@ function Header({ name }) {
           />)
           : null
       }
-      <button
-        type="button"
-        onClick={ toogleInput }
-      >
-        <img
-          src={ searchIcon }
-          alt="Search Icon"
-          data-testid="search-top-btn"
-        />
-      </button>
       {
         !disabledInput ? (
           <>
