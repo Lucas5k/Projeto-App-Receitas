@@ -29,6 +29,7 @@ export const ContainerLogin = styled.div`
     margin-bottom: 8px;
     font-size: 22px;
     font-family: 'Kalam', cursive;
+    box-shadow: 2px 2px 4px var(--gray);
   }
 
   input::placeholder {
