@@ -30,6 +30,7 @@ function Header({ name }) {
             type="button"
           >
             <img
+              className="logo-img"
               src={ profileIcon }
               alt="Profile Icon"
               data-testid="profile-top-btn"
@@ -47,64 +48,66 @@ function Header({ name }) {
           />
         </button>
       </div>
-      {
-        !disabledInput ? (
-          <input
-            type="text"
-            data-testid="search-input"
-            id="search"
-            name="search"
-            value={ search }
-            onChange={ ({ target }) => setSearch(target.value) }
+      <div className="bottom-header">
+        {
+          !disabledInput ? (
+            <input
+              type="text"
+              data-testid="search-input"
+              id="search"
+              name="search"
+              value={ search }
+              onChange={ ({ target }) => setSearch(target.value) }
 
-          />)
-          : null
-      }
-      {
-        !disabledInput ? (
-          <>
-            <div onChange={ ({ target }) => setTypeSearch(target.value) }>
-              <label htmlFor="ingredient">
-                <input
-                  type="radio"
-                  id="ingredient"
-                  data-testid="ingredient-search-radio"
-                  name="type-search"
-                  value="Ingredient"
-                />
-                Ingredients
-              </label>
-              <label htmlFor="name-recipe">
-                <input
-                  type="radio"
-                  id="name-recipe"
-                  data-testid="name-search-radio"
-                  name="type-search"
-                  value="Name"
-                />
-                Name
-              </label>
-              <label htmlFor="first-letter">
-                <input
-                  type="radio"
-                  id="first-letter"
-                  data-testid="first-letter-search-radio"
-                  name="type-search"
-                  value="First letter"
-                />
-                First letter
-              </label>
-            </div>
-            <button
-              type="button"
-              data-testid="exec-search-btn"
-              onClick={ searchRecipes }
-            >
-              Search
-            </button>
-          </>)
-          : null
-      }
+            />)
+            : null
+        }
+        {
+          !disabledInput ? (
+            <>
+              <div onChange={ ({ target }) => setTypeSearch(target.value) }>
+                <label htmlFor="ingredient">
+                  <input
+                    type="radio"
+                    id="ingredient"
+                    data-testid="ingredient-search-radio"
+                    name="type-search"
+                    value="Ingredient"
+                  />
+                  Ingredients
+                </label>
+                <label htmlFor="name-recipe">
+                  <input
+                    type="radio"
+                    id="name-recipe"
+                    data-testid="name-search-radio"
+                    name="type-search"
+                    value="Name"
+                  />
+                  Name
+                </label>
+                <label htmlFor="first-letter">
+                  <input
+                    type="radio"
+                    id="first-letter"
+                    data-testid="first-letter-search-radio"
+                    name="type-search"
+                    value="First letter"
+                  />
+                  First letter
+                </label>
+              </div>
+              <button
+                type="button"
+                data-testid="exec-search-btn"
+                onClick={ searchRecipes }
+              >
+                Search
+              </button>
+            </>)
+            : null
+        }
+      </div>
     </ContainerHeader>
   );
 }
