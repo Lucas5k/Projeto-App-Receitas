@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
-import profileIcon from '../images/profileIcon.svg';
-import searchIcon from '../images/searchIcon.svg';
-import contextGlobal from '../context';
+import profileIcon from '../../images/profileIcon.svg';
+import searchIcon from '../../images/searchIcon.svg';
+import contextGlobal from '../../context';
+import { ContainerHeader } from './style';
 
 function Header({ name }) {
   const { toogleInput,
@@ -20,7 +21,7 @@ function Header({ name }) {
     : auxiliaryFunctionDrinks(typeSearch, search));
 
   return (
-    <header>
+    <ContainerHeader>
       <h1 data-testid="page-title">{name}</h1>
       <Link to="/profile">
         <button
@@ -101,7 +102,7 @@ function Header({ name }) {
           </>)
           : null
       }
-    </header>
+    </ContainerHeader>
   );
 }
 
