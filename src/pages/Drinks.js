@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import RecipeCard from '../components/RecipeCard';
 import contextGlobal from '../context';
 import ButtonCategory from '../components/ButtonCategory';
+import ContainerDrinks from '../styles/Drinks';
 
 function Drinks() {
   const { drinksRecipes,
@@ -17,45 +18,49 @@ function Drinks() {
   return (
     <section>
       <Header name="Drinks" />
-      <button
-        type="button"
-        onClick={ handleAllFilter }
-        data-testid="All-category-filter"
-      >
-        All
-      </button>
-      {
-        drinksCategory && drinksCategory.map((category, index) => {
-          const maxCategory = 5;
-          return index < maxCategory && (
-            <ButtonCategory
-              key={ index }
-              category={ category }
-            />);
-        })
-      }
-      {
-        oneRecipes && oneRecipes.map((element, index) => {
-          const { idDrink } = element;
-          return (
-            <Redirect
-              key={ index }
-              to={ `/drinks/${idDrink}` }
-            />
-          );
-        })
-      }
-      {
-        checkingfilter && checkingfilter.map((recipe, index) => {
-          const maxRecipes = 12;
-          return index < maxRecipes && (
-            <RecipeCard
-              key={ index }
-              index={ index }
-              recipe={ recipe }
-            />);
-        })
-      }
+      <ContainerDrinks>
+        <button
+          type="button"
+          onClick={ handleAllFilter }
+          data-testid="All-category-filter"
+        >
+          All
+        </button>
+        {
+          drinksCategory && drinksCategory.map((category, index) => {
+            const maxCategory = 5;
+            return index < maxCategory && (
+              <ButtonCategory
+                key={ index }
+                category={ category }
+              />);
+          })
+        }
+        {
+          oneRecipes && oneRecipes.map((element, index) => {
+            const { idDrink } = element;
+            return (
+              <Redirect
+                key={ index }
+                to={ `/drinks/${idDrink}` }
+              />
+            );
+          })
+        }
+        <div className="card-section">
+          {
+            checkingfilter && checkingfilter.map((recipe, index) => {
+              const maxRecipes = 12;
+              return index < maxRecipes && (
+                <RecipeCard
+                  key={ index }
+                  index={ index }
+                  recipe={ recipe }
+                />);
+            })
+          }
+        </div>
+      </ContainerDrinks>
       <Footer />
     </section>
   );
