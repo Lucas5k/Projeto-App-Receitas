@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const ContainerHeader = styled.header`
     display: flex;
     justify-content: space-between;
-    align-item: center;
-    background-color: black;
+    align-items: center;
+    background-color: orange;
 
     h2 {
         color: white;
@@ -14,12 +14,18 @@ export const ContainerHeader = styled.header`
     h1 {
         font-family: 'Merienda', cursive;
         color: white;
+        transform: rotate(-0.25turn);
     }
     
     button {
+        background-color: orange;
+        border: none;
+        margin: 5px;
+    }
+
+    img {
         width: 28px;
         heigth: 25px;
-        background-color: black;
     }
 
     .btns-profile-and-search {
