@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import profileIcon from '../../images/profileIcon.svg';
+import profileIcon from '../../assets/whiteprofile.png';
 import ContainerHeader from './style';
 
 function NewHeader({ name }) {

@@ -10,7 +10,7 @@ export const ContainerHeader = styled.header`
     
     
     h2 {
-        color: var(--black);
+        color: white;
         font-family: 'Cookie', cursive;       
         font-size: 30px ;
         transform: rotate(-0.10turn);        
@@ -18,7 +18,7 @@ export const ContainerHeader = styled.header`
 
     h1 {
         font-family: 'Merienda', cursive;
-        color: var(--black);      
+        color: white;      
     }
     
     button {
@@ -28,12 +28,13 @@ export const ContainerHeader = styled.header`
     }
 
     img {
-        width: 28px;
-        height: 25px;
+        width: 30px;
+        height: 30px;
     }
 
     .btns-profile-and-search {
         display: flex;
+        margin-right: 4px;
     }
 
     .bottom-header {

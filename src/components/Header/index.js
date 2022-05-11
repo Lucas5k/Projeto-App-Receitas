@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
-import profileIcon from '../../assets/profileIcon.svg';
-import searchIcon from '../../assets/searchIcon.svg';
+import profileIcon from '../../assets/whiteprofile.png';
+import searchIcon from '../../assets/whitesearch.png';
 import contextGlobal from '../../context';
 import { ContainerHeader } from './style';
 

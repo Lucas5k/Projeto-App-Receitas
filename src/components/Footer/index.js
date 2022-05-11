@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Drinks from '../../assets/drinksIcon.svg';
-import Explore from '../../assets/compassIcon.svg';
-import Food from '../../assets/cutleryforkIcon.svg';
+import Drinks from '../../assets/whitedrink.png';
+import Explore from '../../assets/whitecompass.png';
+import Food from '../../assets/whitefork.png';
 import ContainerFooter from './style';
 
 function Footer() {
