@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { useContext, useEffect } from 'react';
-import contextGlobal from '../context';
-import { verifyIfIsFavorites, getFavorites } from '../helpers/favoritesRecipes';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import contextGlobal from '../../context';
+import { verifyIfIsFavorites, getFavorites } from '../../helpers/favoritesRecipes';
+import blackHeartIcon from '../../images/blackHeartIcon.svg';
+import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
+import ContainerFavoriteButton from './style';
 
 function FavoriteButton({ name, recipe, pageDetails, isFavoritePage, index }) {
   const { handleFavorites,
@@ -19,19 +20,21 @@ function FavoriteButton({ name, recipe, pageDetails, isFavoritePage, index }) {
   }, []);
 
   return (
-    <button
-      type="button"
-      onClick={ () => handleFavorites(name, recipe, pageDetails) }
-    >
-      <img
-        data-testid={ isFavoritePage
-          ? `${index}-horizontal-favorite-btn`
-          : 'favorite-btn' }
-        src={ isFavoriteRecipe
-          ? blackHeartIcon : whiteHeartIcon }
-        alt="Heart Icon"
-      />
-    </button>
+    <ContainerFavoriteButton>
+      <button
+        type="button"
+        onClick={ () => handleFavorites(name, recipe, pageDetails) }
+      >
+        <img
+          data-testid={ isFavoritePage
+            ? `${index}-horizontal-favorite-btn`
+            : 'favorite-btn' }
+          src={ isFavoriteRecipe
+            ? blackHeartIcon : whiteHeartIcon }
+          alt="Heart Icon"
+        />
+      </button>
+    </ContainerFavoriteButton>
   );
 }
 

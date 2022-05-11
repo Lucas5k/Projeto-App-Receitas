@@ -1,24 +1,19 @@
 import styled from 'styled-components';
 
-const ContainerShareButton = styled.div`
+const ContainerFavoriteButton = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;  
+  justify-content: center;
   margin-top: 8px;
-
+  margin-right: 16px;
+  height: 90px;
   button {
     background-color: var(--orange);
     border: none;
     width: 44px;
     height: 44px;
   }
-
-  span {
-    text-align: center;
-    color: white;
-    font-size: 12px;
-    padding-bottom: 14px;
-  }
 `;
 
-export default ContainerShareButton;
+export default ContainerFavoriteButton;
