@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import ShareIcon from '../images/shareIcon.svg';
+import ShareIcon from '../../images/shareIcon.svg';
+import ContainerShareButton from './style';
 
 const copy = require('clipboard-copy');
 
@@ -21,7 +22,7 @@ function ShareButton({ index, recipeType, id }) {
   };
 
   return (
-    <>
+    <ContainerShareButton>
       <button
         type="button"
         data-testid="share-btn"
@@ -34,7 +35,7 @@ function ShareButton({ index, recipeType, id }) {
         />
       </button>
       { isLinkCopied && <span>Link copied!</span>}
-    </>
+    </ContainerShareButton>
   );
 }
 
