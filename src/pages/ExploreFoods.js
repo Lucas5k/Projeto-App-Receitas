@@ -7,9 +7,8 @@ import contextGlobal from '../context';
 function ExploreFoods() {
   const { handleRandom, resultsRandomFoods } = useContext(contextGlobal);
   return (
-    <main>
+    <div>
       <NewHeader name="Explore Foods" />
-      <Footer />
       <Link
         to="/explore/foods/ingredients"
         data-testid="explore-by-ingredient"
@@ -41,7 +40,8 @@ function ExploreFoods() {
           );
         })
       }
-    </main>
+      <Footer />
+    </div>
   );
 }
 
