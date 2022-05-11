@@ -47,8 +47,8 @@ const ContainerDetails = styled.div`
   ol {
     width: 200px;
     list-style: circle;
-    font-family: 'Annie Use Your Telescope', cursive;    
-    font-size: 24px;
+    font-family: 'Annie Use Your Telescope', cursive;
+    font-size: 22px;
     font-style: italic;
   }
 
@@ -60,8 +60,7 @@ const ContainerDetails = styled.div`
     border-radius: 8px;
     text-align: justify;
     font-family: 'Annie Use Your Telescope', cursive;
-    font-size: 24px;
-    font-style: italic;
+    font-size: 22px;
     color: white;
   }
 
