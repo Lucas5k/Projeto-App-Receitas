@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
 import React, { useContext, useEffect, useState } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
-import { requestRecipe, requestRecomendation } from '../helpers/requestAPIs';
-import { verifyIfIsDoneRecipe, getContinueRecipe } from '../helpers/getRecipes';
-import getIngredientsAndMeasures from '../helpers/getIngredientsAndMeasures';
-import Carousel from './Carousel';
-import FavoriteButton from './FavoriteButton';
-import ShareButton from './ShareButton';
-import contextGlobal from '../context';
+import { requestRecipe, requestRecomendation } from '../../helpers/requestAPIs';
+import { verifyIfIsDoneRecipe, getContinueRecipe } from '../../helpers/getRecipes';
+import getIngredientsAndMeasures from '../../helpers/getIngredientsAndMeasures';
+import Carousel from '../Carousel';
+import FavoriteButton from '../FavoriteButton';
+import ShareButton from '../ShareButton';
+import contextGlobal from '../../context';
+import ContainerDetails from './style';
 
 function DetailsRecipe({ pageDetails }) {
   const { setProgressRecipe } = useContext(contextGlobal);
@@ -72,56 +73,74 @@ function DetailsRecipe({ pageDetails }) {
   };
 
   return (
-    <div>
-      <h1
-        data-testid="recipe-title"
-      >
-        { conditionalsVariables.recipeTitle }
-
-      </h1>
+    <ContainerDetails>
       <img
         src={ conditionalsVariables.recipeImgSource }
         alt="recipe"
         data-testid="recipe-photo"
+        className="imgRecipe"
       />
-      <ShareButton />
-      <FavoriteButton
-        name={ conditionalsVariables.recipeTitle }
-        recipe={ recipe }
-        pageDetails={ pageDetails }
-      />
-      <span data-testid="recipe-category">
-        { recipe.strCategory }
-        {''}
-        { recipe.strAlcoholic && ` (${recipe.strAlcoholic})`}
-      </span>
-      <ol>
-        {
-          ingredientsAndMeasures.map((ingredientObject, index) => (
-            <li key={ index } data-testid={ `${index}-ingredient-name-and-measure` }>
-              { ingredientObject.ingredient }
-              {' '}
-              { ingredientObject.measures }
-            </li>
-          ))
-        }
-      </ol>
-      <p data-testid="instructions">{ recipe.strInstructions }</p>
-      { conditionalsVariables.showVideo && (
-        <div style={ { marginBottom: '20px' } }>
-          <iframe
-            width="560"
-            height="315"
-            src={ recipe.strYoutube }
-            data-testid="video"
-            title="YouTube video player"
-            frameBorder="0"
-            allow={ `accelerometer;
-            autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture` }
-            allowFullScreen
+      <div className="detailsAndButton">
+        <div className="recipeTitle">
+          <h1
+            data-testid="recipe-title"
           >
-            Não foi possivel renderizar o video
-          </iframe>
+            { conditionalsVariables.recipeTitle }
+          </h1>
+          <span data-testid="recipe-category">
+            { recipe.strCategory }
+            {''}
+            { recipe.strAlcoholic && ` (${recipe.strAlcoholic})`}
+          </span>
+        </div>
+        <div className="container-btns">
+          <ShareButton />
+          <FavoriteButton
+            name={ conditionalsVariables.recipeTitle }
+            recipe={ recipe }
+            pageDetails={ pageDetails }
+          />
+        </div>
+      </div>
+      <h3>ingredients</h3>
+      <div className="ingredientList">
+        <ol>
+          {
+            ingredientsAndMeasures.map((ingredientObject, index) => (
+              <li key={ index } data-testid={ `${index}-ingredient-name-and-measure` }>
+                { ingredientObject.ingredient }
+                {' '}
+                { ingredientObject.measures }
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+      <h4>instructions</h4>
+      <p
+        className="instructions"
+        data-testid="instructions"
+      >
+        { recipe.strInstructions }
+      </p>
+      { conditionalsVariables.showVideo && (
+        <div className="video-section">
+          <h5>Video</h5>
+          <div style={ { marginBottom: '20px' } }>
+            <iframe
+              width="341"
+              height="160"
+              src={ recipe.strYoutube }
+              data-testid="video"
+              title="YouTube video player"
+              frameBorder="0"
+              allow={ `accelerometer;
+            autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture` }
+              allowFullScreen
+            >
+              Não foi possivel renderizar o video
+            </iframe>
+          </div>
         </div>)}
       <Carousel recomendations={ recomendations } pageDetails={ pageDetails } />
       {
@@ -136,7 +155,7 @@ function DetailsRecipe({ pageDetails }) {
           </button>
         )
       }
-    </div>
+    </ContainerDetails>
   );
 }
 

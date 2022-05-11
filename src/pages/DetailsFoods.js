@@ -3,9 +3,7 @@ import DetailsRecipe from '../components/DetailsRecipe';
 
 function DetailsFoods() {
   return (
-    <main>
-      <DetailsRecipe pageDetails="foods" />
-    </main>
+    <DetailsRecipe pageDetails="foods" />
   );
 }
 
