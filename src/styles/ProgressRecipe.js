@@ -82,12 +82,14 @@ span, h1{
     background-color: var(--white);
     border: none;
     border-radius: 12px;
-    font-size: 28px;
-    font-family: 'Kalam', cursive;
+    font-size: 38px;
+    font-family: 'Merienda', cursive;
     color: var(--orange);    
 }
 
-
+.finishBtn:disabled {
+  background-color: var(--gray);
+}
 
 `;
 

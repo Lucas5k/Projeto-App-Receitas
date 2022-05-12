@@ -84,6 +84,11 @@ const ContainerDetails = styled.div`
     font-family: 'Kalam', cursive;
     color: var(--orange);    
   }
+
+  .startRecipeBtn:disabled {
+  background-color: var(--gray);
+  }
+  
 `;
 
 export default ContainerDetails;
