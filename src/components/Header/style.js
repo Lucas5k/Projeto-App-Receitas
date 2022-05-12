@@ -38,7 +38,7 @@ export const ContainerHeader = styled.header`
     }
 
     .bottom-header {
-        width: 375px;
+        width: 100vw;
         display: flex;
         flex-direction: column;
         justify-content: center;
