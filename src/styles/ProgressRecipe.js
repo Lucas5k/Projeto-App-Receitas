@@ -67,7 +67,7 @@ span, h1{
   border-radius: 8px;
   margin: 12px 18px 12px 18px;
   box-shadow: 1px 1px 8px 2px var(--gray);
-  padding: 8px 10px 8px 10px;
+  padding: 8px 10px 18px 10px;
 }
 
 .recipeProgressContainer label {
