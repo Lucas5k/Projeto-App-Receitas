@@ -14,6 +14,8 @@ const ContainerDrinks = styled.div`
     border-radius: 6px;
     box-shadow: 1px 1px 4px 1px var(--gray);
     color: white;
+    font-size: 16px;
+    font-family: 'Kalam', cursive;
   }
 
   .card-section {
