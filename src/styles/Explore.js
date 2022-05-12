@@ -6,7 +6,7 @@ const ContainerExplore = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 24px;
+  margin-top: 70px;
 
   a {
     text-decoration: none;

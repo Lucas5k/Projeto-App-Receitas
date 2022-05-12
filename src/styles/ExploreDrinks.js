@@ -8,7 +8,7 @@ const ContainerExploreDrinks = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;    
-    margin: 22px 0px 0px 0px;
+    margin: 20px 0px 0px 0px;
     height: 60px;
     width: 200px;
     text-decoration: none;
@@ -16,13 +16,13 @@ const ContainerExploreDrinks = styled.div`
     color: var(--white);
     border-radius: 8px;
     box-shadow: 1px 1px 3px 1px var(--gray);
-    font-size: 20px;
-    font-family: 'Merienda', cursive;
-    margin-left: 92px;
+    font-size: 24px;
+    font-family: 'Kalam', cursive;
+    margin-left: 95px;
   }
 
   button {    
-    margin: 22px 0px 0px 0px;
+    margin: 20px 0px 0px 0px;
     height: 60px;
     width: 200px;
     border: none;
@@ -31,9 +31,9 @@ const ContainerExploreDrinks = styled.div`
     color: var(--white);
     border-radius: 8px;
     box-shadow: 1px 1px 3px 1px var(--gray);
-    font-family: 'Merienda', cursive;
-    font-size: 20px;
-    margin-left: 92px;
+    font-family: 'Kalam', cursive;
+    font-size: 24px;
+    margin-left: 95px;
   }
 
 `;
