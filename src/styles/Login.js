@@ -44,7 +44,7 @@ export const ContainerLogin = styled.div`
     width: 316px;
     height: 76px;
     border-radius: 20px;
-    background-color: var(--red);
+    background-color: var(--orange);
     font-size: 44px;
     color: var(--white);
     margin-top: 16px;
@@ -54,11 +54,13 @@ export const ContainerLogin = styled.div`
 
   input:focus { 
     outline: none;
-    border: 2px solid var(--lightRed);
+    border: 2px solid var(--orange);
   }
 
   button:disabled {
-    background-color: var(--lightRed);
+    background-color: var(--white);
+    color: var(--orange);
+    box-shadow: 1px 1px 10px -2px var(--gray)
   }
   
   h1 {

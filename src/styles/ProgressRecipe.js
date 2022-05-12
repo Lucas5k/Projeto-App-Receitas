@@ -105,12 +105,12 @@ span, h1{
     margin: 0 auto;
     width: 220px;
     height: 60px;
-    background-color: var(--white);
+    background-color: var(--orange);
     border: none;
     border-radius: 12px;
     font-size: 38px;
     font-family: 'Merienda', cursive;
-    color: var(--orange);    
+    color: var(--white);    
 }
 
 .finishBtn:disabled {

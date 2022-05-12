@@ -33,9 +33,14 @@ const ContainerDetails = styled.div`
   }
 
   h1 {
-    font-size: 26px;
+    font-size: 24px;
     box-shadow:  0px 2px 2px -2px var(--orange);
     margin-bottom: 8px;
+    width: 260px;
+  }
+
+  div span {
+    color: var(--orange);
   }
 
   h3, h4, h5 {
