@@ -7,7 +7,8 @@ const ContainerHeader = styled.header`
   background-color: var(--orange);
   flex-wrap: wrap;
   padding: 16px 8px 8px 8px;
-  height: 78px;
+  height: 103px;
+  box-shadow: 0 2px 2px -1px var(--black);
 
   button {
     background-color: var(--orange);
@@ -17,7 +18,7 @@ const ContainerHeader = styled.header`
 
   h1 {
     font-family: 'Merienda', cursive;
-    color: white;   
+    color: white;  
   }
 `;
 
