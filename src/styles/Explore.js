@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-const ContainerExplore = styled.div`
-  height: 100vh;
+const ContainerExplore = styled.div`  
   width: 100vw;
   background-color: var(--white);
   display: flex;
@@ -22,7 +21,7 @@ const ContainerExplore = styled.div`
     font-size: 24px;
     font-family: 'Kalam', cursive;
     border: none;
-    box-shadow: 1px 2px 4px 2px var(--lightRed);    
+    box-shadow: 1px 1px 2px 1px var(--gray);    
   }  
 
 `;
