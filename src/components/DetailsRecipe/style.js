@@ -92,12 +92,12 @@ const ContainerDetails = styled.div`
     margin: 0 auto;
     width: 220px;
     height: 60px;
-    background-color: var(--white);
+    background-color: var(--orange);
     border: none;
     border-radius: 12px;
     font-size: 28px;
     font-family: 'Kalam', cursive;
-    color: var(--orange);    
+    color: var(--white);    
   }
 
   .startRecipeBtn:disabled {
