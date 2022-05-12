@@ -14,7 +14,7 @@ const ContainerProfile = styled.div`
     width: 360px;
     height: 40px;
     border-radius: 8px;
-    box-shadow: 1px 1px 2px 2px var(--orange);
+    box-shadow: 1px 1px 2px 2px var(--gray);
     margin-left: 15px;
     padding-top: 5px;
     background-color: var(--white);
@@ -40,8 +40,8 @@ const ContainerProfile = styled.div`
     color: var(--white);
     font-size: 24px;
     border-radius: 8px;
-    box-shadow: 1px 2px 4px 2px var(--lightRed);
-  }
+    box-shadow: 1px 1px 4px 2px var(--gray);
+  } 
 
 `;
 
