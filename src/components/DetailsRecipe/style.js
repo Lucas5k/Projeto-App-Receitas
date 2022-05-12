@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 const ContainerDetails = styled.div`
  
-  background-color: var(--orange);
-  
+  background-color: var(--orange); 
+  padding-bottom: 160px;
+
   .imgRecipe {
     width: 100vw;
     height: 381px;

@@ -5,6 +5,7 @@ const ContainerFoods = styled.div`
     flex-wrap: wrap;
     justify-content: space-around;
     margin-bottom: 60px;
+    
   button {
     width: 112px;
     height: 28px;
