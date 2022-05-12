@@ -4,6 +4,7 @@ import FiltersButtons from '../components/FiltersButtons';
 import NewHeader from '../components/NewHeader';
 import contextGlobal from '../context';
 import { getFavorites } from '../helpers/favoritesRecipes';
+import ContainerFavoriteRecipes from '../styles/FavoriteRecipes';
 
 function FavoritesRecipes() {
   const { allFavoritesRecipes,
@@ -38,15 +39,19 @@ function FavoritesRecipes() {
   return (
     <main>
       <NewHeader name="Favorite Recipes" />
-      <FiltersButtons onClickButton={ filterFavoritesRecipes } />
-      { filteredFavoritesRecipes.map((filteredFavoriteRecipes, index) => (
-        <DoneRecipeCard
-          key={ index }
-          doneRecipe={ filteredFavoriteRecipes }
-          index={ index }
-          isFavoritePage
-        />
-      )) }
+      <ContainerFavoriteRecipes>
+        <FiltersButtons onClickButton={ filterFavoritesRecipes } />
+        <div className="favoriteCards">
+          { filteredFavoritesRecipes.map((filteredFavoriteRecipes, index) => (
+            <DoneRecipeCard
+              key={ index }
+              doneRecipe={ filteredFavoriteRecipes }
+              index={ index }
+              isFavoritePage
+            />
+          )) }
+        </div>
+      </ContainerFavoriteRecipes>
     </main>
   );
 }
