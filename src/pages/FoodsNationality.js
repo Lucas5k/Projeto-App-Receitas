@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import RecipeCard from '../components/RecipeCard';
+import ContainerFoodsNationality from '../styles/FoodsNationality';
 
 function FoodsNationality() {
   const [resultsNationalities, setResultsNationalities] = useState([]);
@@ -42,44 +43,48 @@ function FoodsNationality() {
   return (
     <main>
       <Header name="Explore Nationalities" />
-      <select
-        defaultValue="Selected"
-        data-testid="explore-by-nationality-dropdown"
-        onChange={ selectNationality }
-      >
-        <option
-          value="all"
-          data-testid="All-option"
+      <ContainerFoodsNationality>
+        <select
+          defaultValue="Selected"
+          data-testid="explore-by-nationality-dropdown"
+          onChange={ selectNationality }
         >
-          All
+          <option
+            value="all"
+            data-testid="All-option"
+          >
+            All
 
-        </option>
-        {resultsNationalities && resultsNationalities.map((nationality, index) => {
-          const { strArea } = nationality;
-          return (
-            <option
-              key={ index }
-              value={ strArea }
-              data-testid={ `${strArea}-option` }
-            >
-              {strArea}
-            </option>
-          );
-        })}
-      </select>
-      {
-        foodsByNationality && foodsByNationality.map((recipe, index) => {
-          const maxRecipes = 12;
-          return index < maxRecipes && (
-            <RecipeCard
-              data-testid={ `${index}-recipe-card` }
-              key={ index }
-              index={ index }
-              recipe={ recipe }
-            />
-          );
-        })
-      }
+          </option>
+          {resultsNationalities && resultsNationalities.map((nationality, index) => {
+            const { strArea } = nationality;
+            return (
+              <option
+                key={ index }
+                value={ strArea }
+                data-testid={ `${strArea}-option` }
+              >
+                {strArea}
+              </option>
+            );
+          })}
+        </select>
+        <div className="cardContainer">
+          {
+            foodsByNationality && foodsByNationality.map((recipe, index) => {
+              const maxRecipes = 12;
+              return index < maxRecipes && (
+                <RecipeCard
+                  data-testid={ `${index}-recipe-card` }
+                  key={ index }
+                  index={ index }
+                  recipe={ recipe }
+                />
+              );
+            })
+          }
+        </div>
+      </ContainerFoodsNationality>
       <Footer />
     </main>
   );
