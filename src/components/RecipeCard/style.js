@@ -11,7 +11,8 @@ const ContainerRecipeCard = styled.div`
 
   a {
     width: 160px;
-    height: 190px;
+    min-height: 190px;
+    max-height: 242px;
     display: flex;
     flex-direction: column;      
     border-radius: 8px;    
@@ -29,7 +30,7 @@ const ContainerRecipeCard = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0px 2px 2px 2px;
+    padding: 0px 4px 2px 4px;
   }
 `;
 
