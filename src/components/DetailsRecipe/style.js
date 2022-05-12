@@ -34,7 +34,7 @@ const ContainerDetails = styled.div`
 
   h1 {
     font-size: 26px;
-    box-shadow:  0px 2px 2px -2px var(--black);
+    box-shadow:  0px 2px 2px -2px var(--orange);
     margin-bottom: 8px;
   }
 
@@ -97,7 +97,7 @@ const ContainerDetails = styled.div`
     border-radius: 12px;
     font-size: 28px;
     font-family: 'Kalam', cursive;
-    color: var(--white);    
+    color: var(--white);
   }
 
   .startRecipeBtn:disabled {

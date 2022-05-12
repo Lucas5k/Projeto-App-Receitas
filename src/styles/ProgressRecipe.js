@@ -52,6 +52,10 @@ const ContainerProgress = styled.div`
   background-color: var(--white);
 }
 
+h1 {
+  box-shadow:  0px 2px 2px -2px var(--orange);
+}
+
 span, h1{
   margin: 14px 0px 0px 16px;
   font-size: 38px;
