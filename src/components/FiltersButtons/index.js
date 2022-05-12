@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ContainerFiltersButtons from './style';
 
 function FiltersButtons({ onClickButton }) {
   return (
-    <div>
+    <ContainerFiltersButtons>
       <button
         type="button"
         data-testid="filter-by-all-btn"
@@ -28,7 +29,7 @@ function FiltersButtons({ onClickButton }) {
       >
         Drinks
       </button>
-    </div>
+    </ContainerFiltersButtons>
   );
 }
 
