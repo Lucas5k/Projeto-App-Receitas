@@ -35,11 +35,11 @@ const ContainerProfile = styled.div`
     width: 200px;
     height: 60px;
     background-color: var(--orange);
-    border-radius: 8px;
     border: none;
-    font-size: 24px;
     font-family: 'Kalam', cursive;    
     color: var(--white);
+    font-size: 24px;
+    border-radius: 8px;
     box-shadow: 1px 2px 4px 2px var(--lightRed);
   }
 
