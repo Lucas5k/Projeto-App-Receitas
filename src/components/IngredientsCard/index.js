@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
-import contextGlobal from '../context/index';
+import contextGlobal from '../../context/index';
+import ContainerIngredientsCard from './style';
 
 function IngredientsCard() {
   const {
@@ -40,7 +41,7 @@ function IngredientsCard() {
   };
 
   return (
-    <div>
+    <ContainerIngredientsCard>
       { resultsIngredients.map((ingredient, index) => {
         const maxIngredients = 12;
         const { strIngredient, strIngredient1 } = ingredient;
@@ -66,7 +67,7 @@ function IngredientsCard() {
           </button>
         );
       })}
-    </div>
+    </ContainerIngredientsCard>
   );
 }
 
