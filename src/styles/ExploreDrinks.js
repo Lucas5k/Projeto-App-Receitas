@@ -12,10 +12,10 @@ const ContainerExploreDrinks = styled.div`
     height: 60px;
     width: 200px;
     text-decoration: none;
-    background-color: var(--white);
-    color: var(--orange);
+    background-color: var(--orange);
+    color: var(--white);
     border-radius: 8px;
-    box-shadow: 1px 1px 3px 1px var(--orange);
+    box-shadow: 1px 1px 3px 1px var(--gray);
     font-size: 20px;
     font-family: 'Merienda', cursive;
     margin-left: 92px;
@@ -27,10 +27,10 @@ const ContainerExploreDrinks = styled.div`
     width: 200px;
     border: none;
     color: var(--black);
-    background-color: var(--white);
-    color: var(--orange);
+    background-color: var(--orange);
+    color: var(--white);
     border-radius: 8px;
-    box-shadow: 1px 1px 3px 1px var(--orange);
+    box-shadow: 1px 1px 3px 1px var(--gray);
     font-family: 'Merienda', cursive;
     font-size: 20px;
     margin-left: 92px;
