@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const ContainerDetails = styled.div`
  
   background-color: var(--orange); 
-  padding-bottom: 160px;
+  padding-bottom: 140px;
 
   .imgRecipe {
     width: 100vw;
@@ -66,8 +66,23 @@ const ContainerDetails = styled.div`
   }
 
   .video-section {
-    margin: 12px 0px 0px 24px;
-    
+    margin: 12px 0px 0px 24px;    
+  }
+
+  .startRecipeBtn {
+    position: fixed;
+    left: 50%;
+    bottom: 20px;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+    width: 220px;
+    height: 60px;
+    background-color: var(--white);
+    border: none;
+    border-radius: 12px;
+    font-size: 28px;
+    font-family: 'Kalam', cursive;
+    color: var(--orange);    
   }
 `;
 

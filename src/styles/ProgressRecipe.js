@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const ContainerProgress = styled.div`
 
   background-color: var(--orange);
-
+  padding-bottom: 140px;
 .imgRecipe {
   width: 100vw;
   height: 320px;
@@ -69,6 +69,22 @@ span, h1{
     font-family: 'Annie Use Your Telescope', cursive;
     font-size: 22px;
     color: white;
+}
+
+.finishBtn {
+  position: fixed;
+    left: 50%;
+    bottom: 20px;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+    width: 220px;
+    height: 60px;
+    background-color: var(--white);
+    border: none;
+    border-radius: 12px;
+    font-size: 28px;
+    font-family: 'Kalam', cursive;
+    color: var(--orange);    
 }
 
 

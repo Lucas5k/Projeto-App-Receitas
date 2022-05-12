@@ -148,7 +148,8 @@ function DetailsRecipe({ pageDetails }) {
           <button
             type="button"
             data-testid="start-recipe-btn"
-            style={ { position: 'fixed', bottom: '0', right: '0' } }
+            className="startRecipeBtn"
+            // style={ { position: 'fixed', bottom: '0', right: '0' } }
             onClick={ toogleToProgress }
           >
             { inProgressRecipe ? 'Continue Recipe' : 'Start Recipe' }

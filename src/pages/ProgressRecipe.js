@@ -189,6 +189,7 @@ function ProgressRecipe({ pageDetails }) {
         data-testid="finish-recipe-btn"
         disabled={ isDisabledButton }
         onClick={ () => push('/done-recipes') }
+        className="finishBtn"
       >
         Finish
       </button>
