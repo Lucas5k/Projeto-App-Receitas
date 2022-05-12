@@ -129,7 +129,7 @@ function DetailsRecipe({ pageDetails }) {
           <div style={ { marginBottom: '20px' } }>
             <iframe
               width="341"
-              height="160"
+              height="300"
               src={ recipe.strYoutube }
               data-testid="video"
               title="YouTube video player"

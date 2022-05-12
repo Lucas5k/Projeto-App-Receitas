@@ -5,7 +5,7 @@ const ContainerDetails = styled.div`
   background-color: var(--orange);
   
   .imgRecipe {
-    width: 375px;
+    width: 100vw;
     height: 381px;
   }
 
@@ -37,7 +37,7 @@ const ContainerDetails = styled.div`
 
   .ingredientList {
     width: 340px;  
-    margin: 12px 0px 12px 18px;
+    margin: 12px 0px 12px 24px;
     box-shadow: 1px 1px 8px 2px var(--lightRed);
     padding: 8px 0px 8px 30px;
     border-radius: 8px;
@@ -54,7 +54,7 @@ const ContainerDetails = styled.div`
 
   .instructions {
     width: 340px;  
-    margin: 12px 0px 12px 18px;
+    margin: 12px 0px 12px 24px;
     box-shadow: 1px 1px 8px 2px var(--lightRed);
     padding: 8px 10px 8px 10px;
     border-radius: 8px;
@@ -65,8 +65,8 @@ const ContainerDetails = styled.div`
   }
 
   .video-section {
-    margin: 12px 0px 0px 18px;
-   
+    margin: 12px 0px 0px 24px;
+    
   }
 `;
 
