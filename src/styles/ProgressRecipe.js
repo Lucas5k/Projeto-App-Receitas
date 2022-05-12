@@ -43,6 +43,7 @@ span, h1{
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  border-radius: 8px;
   margin: 12px 18px 12px 18px;
   box-shadow: 1px 1px 8px 2px var(--lightRed);
   padding: 8px 10px 8px 10px;
@@ -59,7 +60,7 @@ span, h1{
 }
 
 .instructionsContainer {
-  width: 340px;  
+  width: 354px;  
     margin: 12px 0px 12px 18px;
     box-shadow: 1px 1px 8px 2px var(--lightRed);
     padding: 8px 10px 8px 10px;
