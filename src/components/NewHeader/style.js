@@ -18,6 +18,7 @@ const ContainerHeader = styled.header`
 
   h1 {
     font-family: 'Merienda', cursive;
+    font-size: 18px;
     color: white;  
   }
 `;
