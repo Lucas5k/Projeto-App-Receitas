@@ -7,7 +7,7 @@ export const ContainerHeader = styled.header`
     background-color: var(--orange);
     flex-wrap: wrap;
     padding-top: 20px;
-    
+    box-shadow: 0 2px 2px -1px var(--black);
     
     h2 {
         color: white;
