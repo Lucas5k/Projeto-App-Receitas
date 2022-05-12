@@ -143,12 +143,15 @@ function ProgressRecipe({ pageDetails }) {
             <img src={ ShareIcon } alt="Share Icon" />
           </button>
           { isLinkCopied && <span>Link copied!</span> }
+        </div>
+        <div className="favoriteContainer">
           <FavoriteButton
             name={ conditionalsVariables.recipeTitle }
             recipe={ recipe }
             pageDetails={ pageDetails }
           />
         </div>
+
       </div>
       <span data-testid="recipe-category">
         { recipe.strCategory }
