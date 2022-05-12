@@ -7,7 +7,8 @@ export const ContainerLogin = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  
+  background-color: white;
+
   img {
     height: 176px;
     width: 226px;

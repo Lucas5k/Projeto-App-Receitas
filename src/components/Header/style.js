@@ -86,6 +86,7 @@ export const ContainerHeader = styled.header`
         color: var(--black);
         font-family: 'Red Hat Text', sans-serif;
         margin-bottom: 10px;
+        color: white;
     }
 `;
 

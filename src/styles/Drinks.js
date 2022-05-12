@@ -13,6 +13,7 @@ const ContainerDrinks = styled.div`
     border: none;
     border-radius: 6px;
     box-shadow: 1px 1px 4px 1px var(--gray);
+    color: white;
   }
 
   .card-section {

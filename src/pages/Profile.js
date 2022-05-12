@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import NewHeader from '../components/NewHeader';
+import ContainerProfile from '../styles/Profile';
 
 function Profile() {
   const [userEmail, setUserEmail] = useState('');
@@ -21,32 +22,36 @@ function Profile() {
   return (
     <main>
       <NewHeader name="Profile" />
-      <h1 data-testid="profile-email">{userEmail}</h1>
-      <Link to="/done-recipes">
-        <button
-          type="button"
-          data-testid="profile-done-btn"
-        >
-          Done Recipes
-        </button>
-      </Link>
-      <Link to="/favorite-recipes">
-        <button
-          type="button"
-          data-testid="profile-favorite-btn"
-        >
-          Favorite Recipes
-        </button>
-      </Link>
-      <Link to="/">
-        <button
-          type="button"
-          data-testid="profile-logout-btn"
-          onClick={ clearLocalStorage }
-        >
-          Logout
-        </button>
-      </Link>
+      <ContainerProfile>
+        <h1 data-testid="profile-email">{userEmail}</h1>
+        <div className="btnContainer">
+          <Link to="/done-recipes">
+            <button
+              type="button"
+              data-testid="profile-done-btn"
+            >
+              Done Recipes
+            </button>
+          </Link>
+          <Link to="/favorite-recipes">
+            <button
+              type="button"
+              data-testid="profile-favorite-btn"
+            >
+              Favorite Recipes
+            </button>
+          </Link>
+          <Link to="/">
+            <button
+              type="button"
+              data-testid="profile-logout-btn"
+              onClick={ clearLocalStorage }
+            >
+              Logout
+            </button>
+          </Link>
+        </div>
+      </ContainerProfile>
       <Footer />
     </main>
   );
