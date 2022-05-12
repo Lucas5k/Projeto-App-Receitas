@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const ContainerDetails = styled.div`
  
-  background-color: var(--orange); 
+  background-color: var(--white); 
   padding-bottom: 140px;
 
   .imgRecipe {
@@ -22,27 +22,36 @@ const ContainerDetails = styled.div`
     justify-content: space-around;    
   }
 
+  .container-btns button {
+    background-color: var(--white);
+  }
+
   .recipeTitle {
     font-family: 'Red Hat Text', sans-serif;
     margin-left: 16px;
-    color: white;
+    color: var(--orange);
   }
 
+  h1 {
+    font-size: 26px;
+    box-shadow:  0px 2px 2px -2px var(--black);
+    margin-bottom: 8px;
+  }
 
   h3, h4, h5 {
     text-align: center;
     font-family: 'Cookie', cursive;
     font-size: 36px;
-    color: white;
+    color: var(--orange);
   }
 
   .ingredientList {
     width: 340px;  
     margin: 12px 0px 12px 24px;
-    box-shadow: 1px 1px 8px 2px var(--lightRed);
+    box-shadow: 1px 1px 8px 2px var(--gray);
     padding: 8px 0px 8px 30px;
     border-radius: 8px;
-    color: white;
+    color: var(--orange);
   }
 
   ol {
@@ -51,18 +60,24 @@ const ContainerDetails = styled.div`
     font-family: 'Annie Use Your Telescope', cursive;
     font-size: 22px;
     font-style: italic;
+    padding-bottom: 8px;
+  }
+
+  ol li {
+    box-shadow:  0px 2px 2px -2px var(--orange);
+    width: 260px;
   }
 
   .instructions {
     width: 340px;  
     margin: 12px 0px 12px 24px;
-    box-shadow: 1px 1px 8px 2px var(--lightRed);
+    box-shadow: 1px 1px 8px 2px var(--gray);
     padding: 8px 10px 8px 10px;
     border-radius: 8px;
     text-align: justify;
     font-family: 'Annie Use Your Telescope', cursive;
     font-size: 22px;
-    color: white;
+    color: var(--orange);
   }
 
   .video-section {
