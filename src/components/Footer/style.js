@@ -4,11 +4,11 @@ const ContainerFooter = styled.div`
   
   footer{
     width: 100vw;
-    height: 60px;
+    height: 70px;
     background-color: var(--orange);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
   }
 
   img {

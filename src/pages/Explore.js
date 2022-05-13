@@ -9,8 +9,20 @@ function Explore() {
     <>
       <NewHeader name="Explore" />
       <ContainerExplore>
-        <Link to="/explore/foods" data-testid="explore-foods">Explore Foods</Link>
-        <Link to="/explore/drinks" data-testid="explore-drinks">Explore Drinks</Link>
+        <Link
+          to="/explore/foods"
+          data-testid="explore-foods"
+          className="buttonFoods"
+        >
+          Explore Foods
+        </Link>
+        <Link
+          to="/explore/drinks"
+          data-testid="explore-drinks"
+          className="buttonDrinks"
+        >
+          Explore Drinks
+        </Link>
       </ContainerExplore>
       <Footer />
     </>

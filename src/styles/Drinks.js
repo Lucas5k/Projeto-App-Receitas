@@ -4,7 +4,7 @@ const ContainerDrinks = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin-bottom: 60px;
+    margin-bottom: 70px;
   button {
     width: 112px;
     height: 28px;

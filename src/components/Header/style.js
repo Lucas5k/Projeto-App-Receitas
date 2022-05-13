@@ -19,7 +19,7 @@ export const ContainerHeader = styled.header`
     h1 {
         font-family: 'Merienda', cursive;
         color: white;
-        font-size: 18px;    
+        font-size: 18px;
     }
     
     button {

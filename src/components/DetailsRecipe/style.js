@@ -29,25 +29,25 @@ const ContainerDetails = styled.div`
   .recipeTitle {
     font-family: 'Red Hat Text', sans-serif;
     margin-left: 16px;
-    color: var(--orange);
+    color: var(--black);
   }
 
   h1 {
     font-size: 24px;
-    box-shadow:  0px 2px 2px -2px var(--orange);
+    box-shadow:  0px 2px 2px -2px var(--black);
     margin-bottom: 8px;
     width: 260px;
   }
 
   div span {
-    color: var(--orange);
+    color: var(--black);
   }
 
   h3, h4, h5 {
     text-align: center;
     font-family: 'Cookie', cursive;
     font-size: 36px;
-    color: var(--orange);
+    color: var(--black);
   }
 
   .ingredientList {
@@ -56,7 +56,8 @@ const ContainerDetails = styled.div`
     box-shadow: 1px 1px 8px 2px var(--gray);
     padding: 8px 0px 8px 30px;
     border-radius: 8px;
-    color: var(--orange);
+    color: var(--black);
+    font-weight: 1000;
   }
 
   ol {
@@ -69,7 +70,7 @@ const ContainerDetails = styled.div`
   }
 
   ol li {
-    box-shadow:  0px 2px 2px -2px var(--orange);
+    box-shadow:  0px 2px 2px -2px var(--black);
     width: 260px;
   }
 
@@ -82,7 +83,8 @@ const ContainerDetails = styled.div`
     text-align: justify;
     font-family: 'Annie Use Your Telescope', cursive;
     font-size: 22px;
-    color: var(--orange);
+    color: var(--black);
+    font-weight: 1000;
   }
 
   .video-section {
@@ -97,12 +99,13 @@ const ContainerDetails = styled.div`
     margin: 0 auto;
     width: 220px;
     height: 60px;
-    background-color: var(--orange);
+    background-color: var(--black);
     border: none;
     border-radius: 12px;
     font-size: 28px;
     font-family: 'Kalam', cursive;
     color: var(--white);
+    
   }
 
   .startRecipeBtn:disabled {

@@ -28,6 +28,7 @@ const ContainerIngredientsCard = styled.div`
     text-align: center;
     font-size: 16px;
     font-family: 'Kalam', cursive;
+    font-weight: 1000;
   }
 
   button img {

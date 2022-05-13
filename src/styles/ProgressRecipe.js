@@ -30,7 +30,7 @@ const ContainerProgress = styled.div`
   flex-direction: column;
   height: 100px;
   align-items: center;
-  margin-left: 210px;
+  margin-left: 34px;
   margin-top: 8px;
 }
 
@@ -44,23 +44,25 @@ const ContainerProgress = styled.div`
 .shareButton {
   background-color: var(--white);
   border: none;
-  width: 44px;
+  width: 56px;
   height: 44px;  
 }
 
 .favoriteContainer button {
   background-color: var(--white);
+  margin-right: 30px;
 }
 
 h1 {
-  box-shadow:  0px 2px 2px -2px var(--orange);
+  width: 240px;
+  box-shadow:  0px 2px 2px -2px var(--black); 
 }
 
 span, h1{
   margin: 14px 0px 0px 16px;
   font-size: 38px;
   font-family: 'Cookie', cursive;
-  color: var(--orange);
+  color: var(--black);
 }
 
 .recipeProgressContainer { 
@@ -77,8 +79,9 @@ span, h1{
 .recipeProgressContainer label {
   font-family: 'Annie Use Your Telescope', cursive;
   font-size: 22px;
-  color: var(--orange);
-  box-shadow:  0px 2px 2px -2px var(--orange);
+  color: var(--black);
+  font-weight: 600;
+  box-shadow:  0px 2px 2px -2px var(--black);
 }
 
 .recipeProgressContainer label input {
@@ -94,7 +97,8 @@ span, h1{
     text-align: justify;
     font-family: 'Annie Use Your Telescope', cursive;
     font-size: 22px;
-    color: var(--orange);
+    font-weight: 600;
+    color: black;
 }
 
 .finishBtn {
@@ -105,12 +109,12 @@ span, h1{
     margin: 0 auto;
     width: 220px;
     height: 60px;
-    background-color: var(--orange);
+    background-color: var(--black);
     border: none;
     border-radius: 12px;
     font-size: 38px;
     font-family: 'Merienda', cursive;
-    color: var(--white);    
+    color: var(--white);
 }
 
 .finishBtn:disabled {
