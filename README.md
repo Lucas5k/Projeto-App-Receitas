@@ -16,7 +16,7 @@
 
 Página Rodando na web
 <a href="https://projeto-trybe-wallet.vercel.app/">Clique aqui</a>
-para ver a versão final do nosso projeto no seu navegador.
+<p>para ver a versão final do nosso projeto no seu navegador.</p>
 
 <h2>Sobre o Projeto</h2>
 <p>Esse projeto foi o ultimo do modúlo de front-end, consistiu em criar uma aplicação
