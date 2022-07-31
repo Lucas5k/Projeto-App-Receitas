@@ -10,6 +10,7 @@ function App() {
         <RouteRecipes />
       </Provider>
       <GlobalStyle />
+      <p>O</p>
     </div>
   );
 }
