@@ -27,7 +27,7 @@ Projeto feito em grupo!
 
 - Eu, Lucas Cabral. 
 - Matheus Jessé do Nascimento. 
-- Verônica Agda Alvez Silva. 
+- Verônica Agda Alves Silva. 
 - Leonardo Araujo Silva. 
 - Bruna Caroline Cardoso da Silva.
-- Css feito por Matheus Jessé e Verônica Alvez.
+- Css feito por Matheus Jessé e Verônica Alves.
