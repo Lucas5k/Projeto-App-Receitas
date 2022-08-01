@@ -5,17 +5,16 @@ Esse projeto foi o ultimo do modúlo de front-end, consistiu em criar uma aplica
 sobre comidas e bebidas de um restaurante e criar suas funcionalidades. Desenvolvendo em grupo suas funcionalidades de acordo com as demandas definidas em um quadro Kanban.
 
 ## :books: Funcionalidades
-* <b>Funcionalidade 1</b>: Logar no jogo e, se o email tiver cadastro no site Gravatar, ter sua foto associada ao perfil da pessoa usuária.
-* <b>Funcionalidade 2</b>: Acessar a página referente ao jogo, onde se deverá escolher uma das respostas disponíveis para cada uma das perguntas apresentadas. A resposta deve ser marcada antes do contador de tempo chegar a zero, caso contrário a resposta deverá ser considerada errada.
-* <b>Funcionalidade 3</b>: Ser redirecionada, após 5 perguntas respondidas, para a tela de score, onde o texto mostrado depende do número de acertos.
-* <b>Funcionalidade 4</b>: Visualizar a página de ranking, se quiser, ao final de cada jogo.
-* <b>Funcionalidade 5</b>: Configurar algumas opções para o jogo em uma tela de configuração acessível a partir do cabeçalho do app.
+* <b>Funcionalidade 1</b>: desenvolver um app de receitas, utilizando o que há de mais moderno dentro do ecossistema React: Hooks e Context API!
+* <b>Funcionalidade 2</b>: Nele será possível ver, buscar, filtrar, favoritar e acompanhar o progresso de preparação de receitas e drinks!
+* <b>Funcionalidade 3</b>: A base de dados serão 2 APIs distintas, uma para comidas e outra para bebidas.
+* <b>Funcionalidade 4</b>: O layout tem como foco dispositivos móveis, então todos os protótipos vão estar desenvolvidos em telas menores.
 
 ## :wrench: Tecnologias utilizadas
-- React (componente de classe)
+- React Hooks (componente funcional)
 - Css
 - Local storage
-- Redux para o gerenciamento de estado!
+- Context API para o gerenciamento de estado!
 
 ## :rocket: Rodando o projeto
 Para rodar o repositório é necessário clonar o mesmo, dar o seguinte comando para iniciar o projeto:
