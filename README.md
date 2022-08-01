@@ -2,7 +2,7 @@
 
 ## :memo: Descrição
 Esse projeto foi o ultimo do modúlo de front-end, consistiu em criar uma aplicação
-sobre comidas e bebidas de um restaurante e criar suas funcionalidades. Desenvolvendo em grupo suas funcionalidades de acordo com as demandas definidas em um quadro Kanban.
+sobre comidas e bebidas de um restaurante e criar suas funcionalidades. Desenvolvendo em grupo suas funcionalidades de acordo com as demandas definidas em um quadro Kanban. E além disso testar se todas as funcionalidades criadas estão funcionando como esperado!
 
 ## :books: Funcionalidades
 * <b>Funcionalidade 1</b>: desenvolver um app de receitas, utilizando o que há de mais moderno dentro do ecossistema React: Hooks e Context API!
@@ -15,6 +15,7 @@ sobre comidas e bebidas de um restaurante e criar suas funcionalidades. Desenvol
 - Css
 - Local storage
 - Context API para o gerenciamento de estado!
+- React testing library
 
 ## :rocket: Rodando o projeto
 Para rodar o repositório é necessário clonar o mesmo, dar o seguinte comando para iniciar o projeto:
