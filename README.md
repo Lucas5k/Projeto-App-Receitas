@@ -1,7 +1,7 @@
 # Projeto-App-Receitas
 
 ## :memo: Descrição
-Esse projeto foi o ultimo do modúlo de front-end, consistiu em criar uma aplicação
+Esse projeto foi o ultimo do módulo de front-end, consistiu em criar uma aplicação
 sobre comidas e bebidas de um restaurante e criar suas funcionalidades. Desenvolvendo em grupo suas funcionalidades de acordo com as demandas definidas em um quadro Kanban. E além disso testar se todas as funcionalidades criadas estão funcionando como esperado!
 
 ## :books: Funcionalidades
