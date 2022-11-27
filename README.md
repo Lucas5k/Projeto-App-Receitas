@@ -5,12 +5,12 @@ Esse projeto foi o ultimo do módulo de front-end, consistiu em criar uma aplica
 sobre comidas e bebidas de um restaurante e criar suas funcionalidades. Desenvolvendo em grupo suas funcionalidades de acordo com as demandas definidas em um quadro Kanban. E além disso testar se todas as funcionalidades criadas estão funcionando como esperado!
 
 ## :books: Funcionalidades
-* <b>Funcionalidade 1</b>: desenvolver um app de receitas, utilizando o que há de mais moderno dentro do ecossistema React: Hooks e Context API!
-* <b>Funcionalidade 2</b>: Nele será possível ver, buscar, filtrar, favoritar e acompanhar o progresso de preparação de receitas e drinks!
-* <b>Funcionalidade 3</b>: A base de dados serão 2 APIs distintas, uma para comidas e outra para bebidas.
-* <b>Funcionalidade 4</b>: O layout tem como foco dispositivos móveis, então todos os protótipos vão estar desenvolvidos em telas menores.
+<ol><b>Funcionalidade 1</b>: desenvolver um app de receitas, utilizando o que há de mais moderno dentro do ecossistema React: Hooks e Context API!</ol>
+<ol><b>Funcionalidade 2</b>: Nele será possível ver, buscar, filtrar, favoritar e acompanhar o progresso de preparação de receitas e drinks!</ol>
+<ol><b>Funcionalidade 3</b>: A base de dados serão 2 APIs distintas, uma para comidas e outra para bebidas.</ol>
+<ol><b>Funcionalidade 4</b>: O layout tem como foco dispositivos móveis, então todos os protótipos vão estar desenvolvidos em telas menores.</ol>
 
-## :wrench: Tecnologias utilizadas
+## <h3>:wrench: Tecnologias utilizadas</h3>
 - React Hooks (componente funcional)
 - Css
 - Local storage
